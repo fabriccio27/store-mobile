@@ -6,12 +6,16 @@ import Input from "../components/Input";
 function RegisterScreen() {
     const [changedText, setChangedText] = useState("");
     const [submittedText, setSubmittedText] = useState("");
+    const [password, setPassword] = useState("");
+
 
     return (
         <View>
             <Text>Register Screen babyyy</Text>
-            <Input label="Basic Text Input:" />
-            <Input label="Password Input:" secureTextEntry />
+            <Input label="Registra tu nombre de usuario:" />
+            <Input label="Email:" />
+            <Input label="Password" secureTextEntry onChangeText={(ps)=>setPassword(ps)}/>
+            <Input label="Confirmar Password" secureTextEntry />
             
             
             <Input
@@ -27,7 +31,9 @@ function RegisterScreen() {
                     setSubmittedText("");
                 }}
                 
+            
             />
+            <Text>Password: {password}</Text>
             <Text>Changed: {changedText}</Text>
             <Text>Submitted: {submittedText}</Text>
         </View>
