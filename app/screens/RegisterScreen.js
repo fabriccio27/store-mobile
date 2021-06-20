@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import  {View, Text, Button} from 'react-native';
-import { set } from 'react-native-reanimated';
 
 import Input from "../components/Input";
 
@@ -14,18 +13,13 @@ function RegisterScreen() {
     const [validEmail, setValidEmail] = useState(false);
     const [buttonDisabled, setButtonDisabled] = useState(true); 
     
-    /* <Button
-      color="green"
-      title="ClickMe"
-      onPress={()=> alert('boton verde clicked')}
-      ></Button> */
     useEffect(()=>{
         console.log("is valid email?", validEmail);
         checkEmail();
     },[email]);
 
     useEffect(()=>{
-        //tengo que refactorizar esto, esta asqueroso
+        //tengo que refactorizar esto, esta asqueroso, e incorporar que username no este vacio
         if(psMatch){
             if(validEmail){
                 console.log("llegue hasta doble check");
@@ -52,7 +46,7 @@ function RegisterScreen() {
         const isEmail = /^(\w)+(\.)*(\w)*@(\w)+(\.)\w{2,}$/.test(email);
         setValidEmail(isEmail);
     };
-    //tengo que hacer un checkeo de email, que verifique que tengo un xxx@xxx.xx CHECK
+    
     //tengo que hacer un boton deshabilitado hasta que este todo en orden SEMI CHECK
     
     console.log("password matching?", psMatch);

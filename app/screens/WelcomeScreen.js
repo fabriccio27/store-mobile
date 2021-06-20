@@ -12,7 +12,7 @@ function WelcomeScreen({navigation}) {
             </ImageBackground>
             
             <View style={styles.login}>
-                <Text style={styles.lowerText}>Login</Text>
+                <Text style={styles.lowerText} onPress={()=>navigation.navigate("Login")}>Login</Text>
             </View>
             <View style={styles.register}>
                 <Text style={styles.lowerText} onPress={()=>navigation.navigate("Register")}>Register</Text>
