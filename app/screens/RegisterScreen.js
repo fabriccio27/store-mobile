@@ -57,7 +57,7 @@ function RegisterScreen({navigation}) {
             <Text>They match?{psMatch?"YAS":"Nope"}</Text>
             {/* aca por ahi tendria que pasar un objeto que diga que estoy autenticado, y que use eso para 
             modelar que hace apretar back */}
-            <Button title="Confirmar" disabled={buttonDisabled} onPress={()=>navigation.navigate("Login")} />
+            <Button title="Confirmar" disabled={buttonDisabled} onPress={()=>navigation.navigate("Login")} color="#241c1b" />
             
         </View>
     );
