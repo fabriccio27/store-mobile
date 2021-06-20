@@ -5,62 +5,59 @@ import Input from "../components/Input";
 
 
 function RegisterScreen() {
-    
+    // state
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [repeatpassword, setRepeatPassword] = useState("");
     const [email, setEmail] = useState("");
     const [psMatch, setPsMatch] = useState(false);
     const [validEmail, setValidEmail] = useState(false);
     const [buttonDisabled, setButtonDisabled] = useState(true); 
     
+    //hooks de efectos
     useEffect(()=>{
         console.log("is valid email?", validEmail);
         checkEmail();
     },[email]);
 
     useEffect(()=>{
-        //tengo que refactorizar esto, esta asqueroso, e incorporar que username no este vacio
-        if(psMatch){
-            if(validEmail){
-                console.log("llegue hasta doble check");
-                setButtonDisabled(false); //o sea lo habilita
-            }else{
-                setButtonDisabled(true);
-            }
+    
+        if (psMatch && validEmail && username!==""){
+            setButtonDisabled(false); // o sea que lo habilito
         }else{
             setButtonDisabled(true);
         }
         
-    },[psMatch,validEmail]);
-    const checkPassword = (ev) =>{
+    },[psMatch,validEmail,username]);
+    
+    //esto lo ejecuto cuando termino de completar?
+    const checkPassword = () =>{
         console.log("We got to check the password");
-        if (password === ev.nativeEvent.text && password!==""){
-            console.log(`${password} and ${ev.nativeEvent.text}`);
+        if (password === repeatpassword){
+            /* console.log(`${password} and ${repeatpassword}`); */
             setPsMatch(true);
-            return true;
         }else{
             setPsMatch(false);
         }
     };
+    //validacion precaria de email
     const checkEmail = () =>{
         const isEmail = /^(\w)+(\.)*(\w)*@(\w)+(\.)\w{2,}$/.test(email);
         setValidEmail(isEmail);
     };
     
-    //tengo que hacer un boton deshabilitado hasta que este todo en orden SEMI CHECK
-    
-    console.log("password matching?", psMatch);
     return (
         <View>
             <Text>Register Screen babyyy</Text>
             <Input label="Registra tu nombre de usuario:" onChangeText={(user) => setUsername(user)}/>
             <Input label="Email:" onChangeText={(em) => setEmail(em)} />
-            <Input label="Password" secureTextEntry onChangeText={(ps) => setPassword(ps)}/>
-            <Input label="Confirmar Password" secureTextEntry onEndEditing={(event) => checkPassword(event)} />
+            <Input label="Password" secureTextEntry onChangeText={(ps) => setPassword(ps)} onEndEditing={checkPassword} />
+            <Input label="Confirmar Password" secureTextEntry onChangeText={(rps)=>setRepeatPassword(rps)}  onEndEditing={checkPassword} />
             
             <Text>Password: {password}</Text>
             <Text>They match?{psMatch?"YAS":"Nope"}</Text>
             <Button title="Confirmar" onPress={()=>{
+                /* aca tengo que ir pantalla de login */
                 console.log("Boton de confirmar presionado.")
             }} 
             disabled={buttonDisabled}/>
@@ -68,5 +65,4 @@ function RegisterScreen() {
         </View>
     );
 }
-/* este onFocus me limpia los Text de abajo */
 export default RegisterScreen;
