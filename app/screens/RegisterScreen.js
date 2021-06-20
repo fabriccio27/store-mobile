@@ -4,38 +4,33 @@ import Input from "../components/Input";
 
 
 function RegisterScreen() {
-    const [changedText, setChangedText] = useState("");
-    const [submittedText, setSubmittedText] = useState("");
+    
+    const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [email, setEmail] = useState("");
+    const [psMatch, setPsMatch] = useState(false);
+    
 
+    const checkPassword = (ev) =>{
+        /* console.log(ev.nativeEvent.text); //esta regresando bien el input */
+        console.log("We got to check the password");
+        if (password == ev.nativeEvent.text){
+            console.log(`${password} and ${ev.nativeEvent.text}`);
+            setPsMatch(true);
+        }
+    };
 
     return (
         <View>
             <Text>Register Screen babyyy</Text>
-            <Input label="Registra tu nombre de usuario:" />
-            <Input label="Email:" />
-            <Input label="Password" secureTextEntry onChangeText={(ps)=>setPassword(ps)}/>
-            <Input label="Confirmar Password" secureTextEntry />
+            <Input label="Registra tu nombre de usuario:" onChangeText={(user) => setUsername(user)}/>
+            <Input label="Email:" onChangeText={(em) => setEmail(em)}/>
+            <Input label="Password" secureTextEntry onChangeText={(ps) => setPassword(ps)}/>
+            <Input label="Confirmar Password" secureTextEntry onEndEditing={(event) => checkPassword(event)} />
             
-            
-            <Input
-                label="Input Events:"
-                onChangeText={e => {
-                    setChangedText(e);
-                }}
-                onSubmitEditing={e => {
-                    setSubmittedText(e.nativeEvent.text);
-                }}
-                onFocus={() => {
-                    setChangedText("");
-                    setSubmittedText("");
-                }}
-                
-            
-            />
             <Text>Password: {password}</Text>
-            <Text>Changed: {changedText}</Text>
-            <Text>Submitted: {submittedText}</Text>
+            <Text>They match?{psMatch?"YAS":"Nope"}</Text>
+            
         </View>
     );
 }
