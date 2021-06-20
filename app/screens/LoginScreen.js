@@ -3,7 +3,7 @@ import {View, Text, Button} from "react-native";
 import appStyles from '../appStyles';
 import Input from "../components/Input";
 import registeredUsers from "../registeredUsers";
-import loading from "../utils/loading";
+
 
 //este no deberia ir wrappeado porque en esta instancia no estoy buscando ningun recurso
 const LoginScreen = ({navigation})=> {
@@ -22,7 +22,6 @@ const LoginScreen = ({navigation})=> {
             registeredUsers.some(usr=>usr.username==username && usr.password==password)?setAuth(true):setAuth(false);
         }else{
             setAuth(false);
-            //si no hubo match levantar el modal
         }
     };
     /* console.log(`is authenticated? ${isAuth}`); */
@@ -31,10 +30,15 @@ const LoginScreen = ({navigation})=> {
             <Text>Es bueno tenerte de vuelta</Text>
             <Input label="Usuario" onChangeText={(usr)=>setUsername(usr)}/>
             <Input label="Password" secureTextEntry onChangeText={(ps)=>setPassword(ps)}/>
+            {/* puse el title dentro de navigate para ver si modificaba, y si */}
             <Button title="Ingresar" onPress={()=>isAuth?navigation.navigate("Items"):navigation.navigate("NoAuth")}/>
-            {/* si no hay usuario levantar modal con mensaje, si hay levantar modal con carga y redirigir */}
+            {/* si no hay usuario levantar modal con mensaje, si hay levantar mostrar loading y redirigir */}
         </View>
     );
+};
+
+LoginScreen.navigationOptions={
+    title:"Iniciar sesion"
 };
 
 export default LoginScreen;

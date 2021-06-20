@@ -4,7 +4,7 @@ import  {View, Text, Button} from 'react-native';
 import Input from "../components/Input";
 
 
-function RegisterScreen() {
+function RegisterScreen({navigation}) {
     // state
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -48,19 +48,15 @@ function RegisterScreen() {
     
     return (
         <View>
-            <Text>Register Screen babyyy</Text>
             <Input label="Registra tu nombre de usuario:" onChangeText={(user) => setUsername(user)}/>
             <Input label="Email:" onChangeText={(em) => setEmail(em)} />
             <Input label="Password" secureTextEntry onChangeText={(ps) => setPassword(ps)} onEndEditing={checkPassword} />
             <Input label="Confirmar Password" secureTextEntry onChangeText={(rps)=>setRepeatPassword(rps)}  onEndEditing={checkPassword} />
             
-            <Text>Password: {password}</Text>
             <Text>They match?{psMatch?"YAS":"Nope"}</Text>
-            <Button title="Confirmar" onPress={()=>{
-                /* aca tengo que ir pantalla de login */
-                console.log("Boton de confirmar presionado.")
-            }} 
-            disabled={buttonDisabled}/>
+            {/* aca por ahi tendria que pasar un objeto que diga que estoy autenticado, y que use eso para 
+            modelar que hace apretar back */}
+            <Button title="Confirmar" disabled={buttonDisabled} onPress={()=>navigation.navigate("Login")} />
             
         </View>
     );

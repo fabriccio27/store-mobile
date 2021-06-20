@@ -16,5 +16,12 @@ export default StyleSheet.create({
     textInput:{
         borderWidth:2,
         borderColor:"black"
+    },
+    listItem:{
+        margin: 5,
+        padding: 5,
+        color: "slategrey",
+        backgroundColor: "ghostwhite",
+        textAlign: "center"
     }
 });
