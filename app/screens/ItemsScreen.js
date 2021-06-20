@@ -17,6 +17,7 @@ const  ItemsScreen = loading(({navigation}) => {
               style: "cancel"
             },
             { text: "Si", onPress: () => BackHandler.exitApp() }
+            //aca podria agregar lo de cerrar sesion
           ]);
           return true;
         };

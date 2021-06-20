@@ -42,5 +42,5 @@ export default createAppContainer (
       })
     }, NoAuth
   }, 
-  {initialRouteName:"Welcome"})
+  {initialRouteName:"Welcome"}) //esto tiene que depender de si estoy logueado o deslogueado creo
 );

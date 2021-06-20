@@ -18,7 +18,7 @@ const LoginScreen = ({navigation})=> {
 
     const checkLogin =()=>{
         if (username.length>0 && password.length>0){
-            //includes checkea igual de referencia, por eso si comparo username y password con info hardcodeada da false
+            //includes checkea igualad de referencia, por eso si comparo username y password con info hardcodeada da false
             registeredUsers.some(usr=>usr.username==username && usr.password==password)?setAuth(true):setAuth(false);
         }else{
             setAuth(false);
@@ -31,8 +31,12 @@ const LoginScreen = ({navigation})=> {
             <Input label="Usuario" onChangeText={(usr)=>setUsername(usr)}/>
             <Input label="Password" secureTextEntry onChangeText={(ps)=>setPassword(ps)}/>
             {/* puse el title dentro de navigate para ver si modificaba, y si */}
-            <Button title="Ingresar" onPress={()=>isAuth?navigation.navigate("Items"):navigation.navigate("NoAuth")} color="#241c1b"/>
-            {/* si no hay usuario levantar modal con mensaje, si hay levantar mostrar loading y redirigir */}
+            <Button 
+                title="Ingresar" 
+                onPress={() => isAuth? navigation.navigate("Items"):navigation.navigate("NoAuth")} 
+                color="#241c1b"
+            />
+            {/* si no hay usuario llevar a screen de credenciales invalidas, si hay levantar mostrar loading y redirigir */}
         </View>
     );
 };
