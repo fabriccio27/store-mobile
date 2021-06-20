@@ -27,11 +27,11 @@ const LoginScreen = ({navigation})=> {
     /* console.log(`is authenticated? ${isAuth}`); */
     return (
         <View style={appStyles.container}>
-            <Text>Es bueno tenerte de vuelta</Text>
+            <Text style={appStyles.titleOrHeader}>Es bueno tenerte de vuelta</Text>
             <Input label="Usuario" onChangeText={(usr)=>setUsername(usr)}/>
             <Input label="Password" secureTextEntry onChangeText={(ps)=>setPassword(ps)}/>
             {/* puse el title dentro de navigate para ver si modificaba, y si */}
-            <Button title="Ingresar" onPress={()=>isAuth?navigation.navigate("Items"):navigation.navigate("NoAuth")}/>
+            <Button title="Ingresar" onPress={()=>isAuth?navigation.navigate("Items"):navigation.navigate("NoAuth")} color="#241c1b"/>
             {/* si no hay usuario levantar modal con mensaje, si hay levantar mostrar loading y redirigir */}
         </View>
     );

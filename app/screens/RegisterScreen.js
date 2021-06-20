@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import  {View, Text, Button} from 'react-native';
 
 import Input from "../components/Input";
+import styles from "../appStyles";
 
 
 function RegisterScreen({navigation}) {
@@ -47,7 +48,7 @@ function RegisterScreen({navigation}) {
     };
     
     return (
-        <View>
+        <View style={styles.container}>
             <Input label="Registra tu nombre de usuario:" onChangeText={(user) => setUsername(user)}/>
             <Input label="Email:" onChangeText={(em) => setEmail(em)} />
             <Input label="Password" secureTextEntry onChangeText={(ps) => setPassword(ps)} onEndEditing={checkPassword} />

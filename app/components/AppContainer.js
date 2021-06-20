@@ -12,6 +12,7 @@ import Share from "../screens/ShareScreen";
 import NoAuth from "../screens/NoAuthScreen";
 
 import ShareButton from "./ShareButton";
+import ShopButton from "./ShopButton";
 
 export default createAppContainer (
   createStackNavigator({
@@ -37,7 +38,7 @@ export default createAppContainer (
       navigationOptions:({navigation})=>({
         title:navigation.getParam("title") || "Carrito",
         headerLeft:()=><Text onPress={()=>console.log("fijarse como desloguear")}>Cerrar</Text>,
-        headerRight:()=><ShareButton onPress={navigation.navigate("Share")}/>
+        headerRight:()=><ShopButton/>
       })
     }, NoAuth
   }, 
