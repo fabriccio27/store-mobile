@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {View, Text, FlatList, Button, Alert, BackHandler} from "react-native";
 import loading from '../utils/loading';
 import items from "../availableItems";
+import Item from '../components/Item';
 import styles from "../appStyles";
 
 
@@ -29,17 +30,17 @@ const  ItemsScreen = loading(({navigation}) => {
     
         return () => backHandler.remove();
       }, []);
+
     //tengo que modificar la barra superior, la hago un componente y a los text les mando un boton
     const [articulos, setArticulos]= useState(items)
     
 
     return (
         <View>
-            
             <FlatList 
                 data={items} 
                 renderItem={({item})=>{
-                    return <Text style={styles.listItem}>{item.description} | {item.value}</Text>
+                    return <Item item={item} />
                 }}
             />
         </View>

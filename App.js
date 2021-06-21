@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import { StyleSheet} from 'react-native';
 import AppContainer from "./app/components/AppContainer";
 import AppRouter from './app/utils/AppRouter';
 import AuthContext from "./app/utils/AuthContext";
@@ -16,11 +15,3 @@ export default function App() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
