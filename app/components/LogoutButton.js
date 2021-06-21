@@ -17,7 +17,7 @@ function LogoutButton({navigation}) {
     }
     return(
         <TouchableOpacity onPress={handleLogout}>
-            <Image source={require("../assets/exit.png")} style={{width:30, height:30, marginRight:10, padding:10}} />
+            <Image source={require("../assets/exit.png")} style={{width:30, height:30, marginLeft:10, padding:10}} />
         </TouchableOpacity>
         
     )

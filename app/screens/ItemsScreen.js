@@ -3,7 +3,7 @@ import {View, Text, FlatList, Button, Alert, BackHandler} from "react-native";
 import loading from '../utils/loading';
 import items from "../availableItems";
 import Item from '../components/Item';
-import styles from "../appStyles";
+import ItemsContext from "../utils/ItemsContext";
 
 
 //este va wrappeado porque supuestamente fui a buscar info de items
@@ -34,16 +34,17 @@ const  ItemsScreen = loading(({navigation}) => {
     //tengo que modificar la barra superior, la hago un componente y a los text les mando un boton
     const [articulos, setArticulos]= useState(items)
     
-
     return (
+      <ItemsContext.Provider value={{setArticulos, articulos}}>
         <View>
             <FlatList 
-                data={items} 
+                data={articulos} 
                 renderItem={({item})=>{
                     return <Item item={item} />
                 }}
             />
         </View>
+      </ItemsContext.Provider>
     );
 })
 

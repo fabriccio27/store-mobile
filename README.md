@@ -1,5 +1,7 @@
 # Store mobile
 
+# Ver si puedo usar localStorage o algo parecido para recuperar de ahi
+
 ## Recomendacion de testeo
 
 * Clonar repositorio de [aca](https://github.com/fabriccio27/store-mobile) **de rama auth-context**. 

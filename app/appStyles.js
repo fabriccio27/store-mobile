@@ -28,6 +28,8 @@ export default StyleSheet.create({
         paddingLeft:10 
     },
     listItem:{
+        flexDirection:"column",
+        justifyContent:"space-between",
         margin: 5,
         padding: 5,
         color: "slategrey",
