@@ -1,4 +1,14 @@
 # Store mobile
+
+## Recomendacion de testeo
+
+* Clonar repositorio de [aca](https://github.com/fabriccio27/store-mobile) **de rama auth-context**. 
+```
+git clone -b auth-context https://github.com/fabriccio27/store-mobile.git
+```
+* Instalar dependencias con `npm install`. Va a usar las especificadas en `package.json`, que a mi me anduvieron y son practicamente las usadas en clase.
+
+## Caracteristicas
 - Login manda a pantalla de credenciales invalidas si el input no es el correcto.
 - Register checkea coincidencia de password y confirmacion de password, valida email precariamente y username no vacio.
 - Hasta no cumplir condiciones de arriba no me dejar usar el boton de submit.
