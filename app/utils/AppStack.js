@@ -6,6 +6,7 @@ import Items from "../screens/ItemsScreen";
 import ShopButton from "../components/ShopButton";
 import LogoutButton from "../components/LogoutButton";
 
+
 const AppStack = createStackNavigator({
     Items:{
         screen: props=>(
@@ -13,7 +14,7 @@ const AppStack = createStackNavigator({
         ),
         navigationOptions:({navigation})=>({
           title:navigation.getParam("title") || "Carrito",
-          headerLeft:()=><Text onPress={()=>navigation.navigate("Auth")}>Cerrar</Text>,
+          headerLeft:()=><LogoutButton/>/* <Text onPress={()=>navigation.navigate("AuthLoading")}>Cerrar</Text> */,
           headerRight:()=><ShopButton/>
         })
     }

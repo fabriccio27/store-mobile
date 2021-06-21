@@ -40,5 +40,9 @@ export default StyleSheet.create({
         /* backgroundColor:"#f06414", */
         color:"white",
         padding:20
+    },
+    logo:{
+        width:128,
+        height:128
     }
 });

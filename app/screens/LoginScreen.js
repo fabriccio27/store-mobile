@@ -1,5 +1,5 @@
 import React, {useState,useEffect,useContext} from 'react';
-import {View, Text, Button} from "react-native";
+import {View, Text, Button, ImageBackground, StyleSheet} from "react-native";
 
 import appStyles from '../appStyles';
 import Input from "../components/Input";
@@ -31,25 +31,41 @@ const LoginScreen = ({navigation})=> {
     /* console.log(`is authenticated? ${isAuth}`); */
     return (
         <View style={appStyles.container}>
-            <Text style={appStyles.titleOrHeader}>Es bueno tenerte de vuelta</Text>
-            <Input label="Usuario" onChangeText={(usr)=>setUsername(usr)}/>
-            <Input label="Password" secureTextEntry onChangeText={(ps)=>setPassword(ps)}/>
-            {/* puse el title dentro de navigate para ver si modificaba, y si */}
-            <Button 
-                title="Ingresar" 
-                onPress={() => isAuth? navigation.navigate("Items"):navigation.navigate("NoAuth")} 
-                color="#241c1b"
-            />
-            <Button 
+            
+                <Text style={appStyles.titleOrHeader}>Es bueno tenerte de vuelta</Text>
+                <Input label="Usuario" onChangeText={(usr)=>setUsername(usr)}/>
+                <Input label="Password" secureTextEntry onChangeText={(ps)=>setPassword(ps)}/>
+                {/* puse el title dentro de navigate para ver si modificaba, y si */}
+                <Button 
+                    title="Ingresar" 
+                    onPress={() => isAuth? navigation.navigate("Items"):navigation.navigate("NoAuth")} 
+                    color="#241c1b"
+                />
+            
+            
+            {/* <Button 
                 title="Testear" 
                 onPress={testContext} 
                 color="#241c1b"
-            />
+            /> */}
             {/* si no hay usuario llevar a screen de credenciales invalidas, si hay levantar mostrar loading y redirigir */}
         </View>
     );
 };
 
+const styles = StyleSheet.create({
+    container:{
+        flex:1,
+        flexDirection:"column",
+        alignItems:"center",
+        backgroundColor:"black"
+    },  
+    image:{
+        flex:1,
+        resizeMode:"cover",
+        justifyContent:"center"
+    }
+})
 LoginScreen.navigationOptions={
     title:"Iniciar sesion"
 };
