@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import {Text} from "react-native";
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
@@ -13,6 +13,10 @@ import NoAuth from "../screens/NoAuthScreen";
 
 import ShareButton from "./ShareButton";
 import ShopButton from "./ShopButton";
+
+import AuthContext from "../utils/AuthContext";
+
+/* const {isAuth} = useContext(AuthContext); */
 
 export default createAppContainer (
   createStackNavigator({
@@ -44,3 +48,4 @@ export default createAppContainer (
   }, 
   {initialRouteName:"Welcome"}) //esto tiene que depender de si estoy logueado o deslogueado creo
 );
+

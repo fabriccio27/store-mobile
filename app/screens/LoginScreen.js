@@ -1,16 +1,20 @@
-import React, {useState,useEffect} from 'react';
+import React, {useState,useEffect,useContext} from 'react';
 import {View, Text, Button} from "react-native";
+
 import appStyles from '../appStyles';
 import Input from "../components/Input";
 import registeredUsers from "../registeredUsers";
+import AuthContext from '../utils/AuthContext';
 
 
 //este no deberia ir wrappeado porque en esta instancia no estoy buscando ningun recurso
 const LoginScreen = ({navigation})=> {
 
+    const {testContext,isAuth,setAuth} = useContext(AuthContext);
+
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [isAuth, setAuth] = useState(false);
+    /* const [isAuth, setAuth] = useState(false); */
     
     useEffect(()=>{
         checkLogin();
@@ -18,7 +22,7 @@ const LoginScreen = ({navigation})=> {
 
     const checkLogin =()=>{
         if (username.length>0 && password.length>0){
-            //includes checkea igualad de referencia, por eso si comparo username y password con info hardcodeada da false
+            //includes checkea igualdad de referencia, por eso si comparo username y password con info hardcodeada da false
             registeredUsers.some(usr=>usr.username==username && usr.password==password)?setAuth(true):setAuth(false);
         }else{
             setAuth(false);
@@ -34,6 +38,11 @@ const LoginScreen = ({navigation})=> {
             <Button 
                 title="Ingresar" 
                 onPress={() => isAuth? navigation.navigate("Items"):navigation.navigate("NoAuth")} 
+                color="#241c1b"
+            />
+            <Button 
+                title="Testear" 
+                onPress={testContext} 
                 color="#241c1b"
             />
             {/* si no hay usuario llevar a screen de credenciales invalidas, si hay levantar mostrar loading y redirigir */}
