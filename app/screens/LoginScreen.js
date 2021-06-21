@@ -31,7 +31,7 @@ const LoginScreen = ({navigation})=> {
     /* console.log(`is authenticated? ${isAuth}`); */
     return (
         <View style={appStyles.container}>
-            
+            <ImageBackground source={require("../assets/bikeWall.jpg")} style={appStyles.backgroundImage}>
                 <Text style={appStyles.titleOrHeader}>Es bueno tenerte de vuelta</Text>
                 <Input label="Usuario" onChangeText={(usr)=>setUsername(usr)}/>
                 <Input label="Password" secureTextEntry onChangeText={(ps)=>setPassword(ps)}/>
@@ -41,7 +41,7 @@ const LoginScreen = ({navigation})=> {
                     onPress={() => isAuth? navigation.navigate("Items"):navigation.navigate("NoAuth")} 
                     color="#241c1b"
                 />
-            
+            </ImageBackground>
             
             {/* <Button 
                 title="Testear" 
@@ -53,19 +53,7 @@ const LoginScreen = ({navigation})=> {
     );
 };
 
-const styles = StyleSheet.create({
-    container:{
-        flex:1,
-        flexDirection:"column",
-        alignItems:"center",
-        backgroundColor:"black"
-    },  
-    image:{
-        flex:1,
-        resizeMode:"cover",
-        justifyContent:"center"
-    }
-})
+
 LoginScreen.navigationOptions={
     title:"Iniciar sesion"
 };

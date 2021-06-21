@@ -2,7 +2,8 @@ import React, {useState, useEffect} from 'react';
 import  {View, Text, Button} from 'react-native';
 
 import Input from "../components/Input";
-import styles from "../appStyles";
+import appStyles from "../appStyles";
+import ImageBackground from 'react-native/Libraries/Image/ImageBackground';
 
 
 function RegisterScreen({navigation}) {
@@ -17,7 +18,7 @@ function RegisterScreen({navigation}) {
     
     //hooks de efectos
     useEffect(()=>{
-        console.log("is valid email?", validEmail);
+        /* console.log("is valid email?", validEmail); */
         checkEmail();
     },[email]);
 
@@ -47,19 +48,31 @@ function RegisterScreen({navigation}) {
         setValidEmail(isEmail);
     };
     
+    const PassMatch = () => {
+        return <Text style={appStyles.greenMessage}>Password coinciden!</Text>
+    }
+    const NoPassMatch = () => {
+        return <Text style={appStyles.pendingMessage}>Los campos de password aun no coinciden</Text>
+    }
+
     return (
-        <View style={styles.container}>
+        <View style={appStyles.container}>
+            <ImageBackground source={require("../assets/fillOutForm.jpeg")} style={appStyles.backgroundImage}>
+
+            
             <Input label="Registra tu nombre de usuario:" onChangeText={(user) => setUsername(user)}/>
             <Input label="Email:" onChangeText={(em) => setEmail(em)} />
             <Input label="Password" secureTextEntry onChangeText={(ps) => setPassword(ps)} onEndEditing={checkPassword} />
             <Input label="Confirmar Password" secureTextEntry onChangeText={(rps)=>setRepeatPassword(rps)}  onEndEditing={checkPassword} />
             
-            <Text>They match?{psMatch?"YAS":"Nope"}</Text>
+            {psMatch?<PassMatch/>:<NoPassMatch/>}
             {/* aca por ahi tendria que pasar un objeto que diga que estoy autenticado, y que use eso para 
             modelar que hace apretar back */}
             <Button title="Confirmar" disabled={buttonDisabled} onPress={()=>navigation.navigate("Login")} color="#241c1b" />
+            </ImageBackground>
             
         </View>
     );
 }
+
 export default RegisterScreen;

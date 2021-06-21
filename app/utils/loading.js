@@ -19,8 +19,8 @@ export default function loading(Wrapped) {
         if (loading) {
             return (
                 <View style={styles.container}>
-                    <Text>Cargando...</Text>
-                    <ActivityIndicator size="large" color="darkslateblue" />
+                    <Text style={{color:"#2383a2", fontSize:20}}>Cargando...</Text>
+                    <ActivityIndicator size="large" color="#2383a2" />
                 </View>
             );
         } else {

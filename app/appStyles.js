@@ -5,12 +5,13 @@ export default StyleSheet.create({
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor:"#333131"
+        backgroundColor:"#8c9ba0",
+        /* backgroundColor:"#333131" */
     },
     textInputContainer:{
         alignSelf:"center",
-        backgroundColor:"#4a4646",
-        borderRadius:10,
+        backgroundColor: "rgba(77, 65, 60,0.7)" ,
+        borderRadius:5,
         margin:10,
         padding:5,
         width:"90%",
@@ -44,5 +45,24 @@ export default StyleSheet.create({
     logo:{
         width:128,
         height:128
+    },
+    backgroundImage:{
+        flex:1,
+        justifyContent:"center",
+        alignItems:"center",
+        width:"100%"
+    },
+    greenMessage:{
+        backgroundColor:"green",
+        color:"white",
+        fontWeight:"bold",
+        marginBottom:5,
+        paddingHorizontal:5
+    },
+    pendingMessage:{
+        color:"white",
+        backgroundColor:"crimson",
+        marginBottom:5,
+        padding:5
     }
 });
