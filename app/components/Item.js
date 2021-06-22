@@ -9,8 +9,8 @@ import SessionContext from "../utils/SessionContext";
 function Item({item}) {
     //ver que esto deberia tener un display tipo row con varios Text adentro
     //probe con row y no queda muy bien, creo que tendria que armar una card
-    const {articulos, setArticulos, userSession} = useContext(AuthContext);
-    const {recuperado, setRecuperado} = useContext(SessionContext);
+    const {userSession} = useContext(AuthContext);
+    const {recuperado} = useContext(SessionContext);
     
     if(!recuperado){
         return <Text>Estamos esperando...</Text>
@@ -23,7 +23,6 @@ function Item({item}) {
 
     //tengo que escribir al AsyncStorage creo
     const handleInc = ()=>{
-        console.log("queriendo incrementar");
         recCopy.shopState[idx].value++;
         /* tengo que rescribir todo, o solo el shopState */
         
@@ -35,10 +34,7 @@ function Item({item}) {
         AsyncStorage.setItem(userSession, JSON.stringify(recCopy))
         .then(()=>console.log("Decrementado"));
     }
-        /* artCopy[idx].value--;
-        setArticulos(artCopy); */
-
-    
+ 
 
     return (
         <View style={appStyles.listItem}>

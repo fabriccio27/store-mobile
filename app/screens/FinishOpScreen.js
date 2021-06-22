@@ -37,6 +37,7 @@ function FinishOpScreen({navigation}) {
       }
       
       getData();
+      //cuando desmonta setea isCancelled a true, entonces lo de getData no me jode el state
       return () => {
         isCancelled = true;
       };
@@ -45,7 +46,7 @@ function FinishOpScreen({navigation}) {
     if(!recuperado){
       return <Text> Espere por favor...</Text>
     }else{
-      console.log(recuperado);
+      /* console.log(recuperado); */
       const total = recuperado.shopState.reduce((subt, art)=>{
         return subt + art.value * art.price;
       },0); 

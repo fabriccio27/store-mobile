@@ -45,18 +45,33 @@ const ItemsScreen = loading(({navigation}) => {
         return () => backHandler.remove();
       }, []);
     
-    const fetchUserInfo=()=>{
-      AsyncStorage.getItem(userSession)
-      .then(resp =>{
-        setRecuperado(JSON.parse(resp));
-      })
-      .catch(err=>console.log("Esto paso tratando de recuperar info de usuario", err));
-    }
-    
+      
     useEffect(()=>{
-      fetchUserInfo();
-    },[recuperado]); //si no hago que escuche a recuperado, no me muestra la actualizacion
+      let isCancelled=false;
 
+      const getData = async () => {
+        try {
+          const jsonValue = await AsyncStorage.getItem(userSession)
+          if(!isCancelled){
+            const toSet = jsonValue != null ? JSON.parse(jsonValue) : null;
+            setRecuperado(toSet);
+          }
+          
+        } catch(e) {
+          if(!isCancelled){
+            console.log("errorrrr", e);
+          }
+        }
+      }
+      
+      getData();
+      
+      return () => {
+        isCancelled = true;
+      };
+    },[recuperado]);
+    
+    
     if (!recuperado){
       return <Text>Recuperando tu informacion...</Text>
     }else{
