@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { View, ActivityIndicator,Text } from "react-native";
-import styles from "../appStyles";
+import styles from "../styles/appStyles";
 
 //esto es un funcion de orden superior, devuelve un componente envuelto.
 //la promesa que tiene en props, viene de lo que hice en el appContainer cuando cree el stack
@@ -19,7 +19,7 @@ export default function loading(Wrapped) {
         if (loading) {
             return (
                 <View style={styles.container}>
-                    <Text style={{color:"#2383a2", fontSize:20}}>Cargando...</Text>
+                    {/* <Text style={{color:"#2383a2", fontSize:20}}>Cargando...</Text> */}
                     <ActivityIndicator size="large" color="#2383a2" />
                 </View>
             );

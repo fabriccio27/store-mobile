@@ -5,7 +5,7 @@ import { View, ActivityIndicator } from "react-native";
 import AuthContext from "./AuthContext";
 import AppStack from "./AppStack";
 import AuthStack from "./AuthStack";
-import appStyles from "../appStyles";
+import appStyles from "../styles/appStyles";
 
 const FirstScreen = ({navigation})=>{
     const {isAuth} = useContext(AuthContext);

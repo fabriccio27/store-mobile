@@ -1,13 +1,22 @@
 import React from 'react';
 import  {View, Text, StyleSheet, ImageBackground, Image, Button} from 'react-native';
-import appStyles from '../appStyles';
-
+import appStyles from '../styles/appStyles';
+import AppLoading from 'expo-app-loading';
+import { useFonts, Oswald_200ExtraLight } from '@expo-google-fonts/oswald';
 function WelcomeScreen({navigation}) {
+
+    let [fontsLoaded] = useFonts({
+        Oswald_200ExtraLight,
+      });
+    
+      if (!fontsLoaded) {
+        return <AppLoading />;
+      }
     return (
         <View style={styles.container}>
             
             <ImageBackground source={require("../assets/aparador.jpg")} style={styles.image}>
-                <Text style={styles.upperText}>Vende lo que ya no necesitas</Text>
+                <Text style={styles.upperText}>ACERCATE AL CONFORT QUE MERECES</Text>
                 <Image source={require("../assets/notebook.png")} style={appStyles.logo}/>
                 <Button title="Iniciar Sesion" onPress={()=>navigation.navigate("Login")} color="#241c1b"/>
                 <Button title="Registrarse" onPress={()=>navigation.navigate("Register")} color="#241c1b"/>
@@ -41,7 +50,8 @@ const styles = StyleSheet.create({
         color:"white",
         fontSize:22,
         marginTop:13,
-        padding:8
+        padding:8,
+        fontFamily:"Oswald_200ExtraLight"
     }
 });
 

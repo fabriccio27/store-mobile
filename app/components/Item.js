@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import {View, Text, Alert} from "react-native";
-import appStyles from '../appStyles';
+import appStyles from '../styles/appStyles';
 import AuthContext from "../utils/AuthContext";
 
 function Item({item}) {

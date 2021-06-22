@@ -85,7 +85,7 @@ export default StyleSheet.create({
     },
     itemTitle:{
         fontWeight:"bold",
-        fontSize:25,
+        fontSize:22,
         textAlign:"center"
     },
     itemPrice:{
@@ -94,8 +94,10 @@ export default StyleSheet.create({
         paddingTop:5
     },
     upperCardSection:{
-        flexDirection:"row",
+        /* flexDirection:"row", */
         justifyContent:"center",
+        alignItems:"center",
         marginVertical:20
-    },
+    }
+    
 });

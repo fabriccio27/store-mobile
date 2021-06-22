@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import  {View, Text, Button} from 'react-native';
 
 import Input from "../components/Input";
-import appStyles from "../appStyles";
+import appStyles from "../styles/appStyles";
 import ImageBackground from 'react-native/Libraries/Image/ImageBackground';
 
 
@@ -78,7 +78,7 @@ function RegisterScreen({navigation}) {
             {/* aca por ahi tendria que pasar un objeto que diga que estoy autenticado, y que use eso para 
             modelar que hace apretar back */}
             {/* aca tengo que ver si exporto un json  */}
-            <Button title="Printear info" onPress={submitRegister}/>
+            {/* <Button title="Printear info" onPress={submitRegister}/> */}
             <Button title="Confirmar" disabled={buttonDisabled} onPress={()=>navigation.navigate("Login")} color="#241c1b" />
             </ImageBackground>
             

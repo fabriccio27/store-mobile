@@ -1,7 +1,7 @@
 import React, {useState,useEffect,useContext} from 'react';
-import {View, Text, Button, ImageBackground, StyleSheet} from "react-native";
+import {View, Text, Button, ImageBackground} from "react-native";
 
-import appStyles from '../appStyles';
+import appStyles from '../styles/appStyles';
 import Input from "../components/Input";
 import registeredUsers from "../registeredUsers";
 import AuthContext from '../utils/AuthContext';

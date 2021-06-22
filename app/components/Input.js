@@ -1,13 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Text, TextInput, View } from "react-native";
-import styles from "../appStyles";
+import appStyles from "../styles/appStyles";
 
 function Input(props) {
     return (
-        <View style={styles.textInputContainer}>
-            <Text style={styles.textInputLabel}>{props.label}</Text>
-            <TextInput style={styles.textInput} {...props} />
+        <View style={appStyles.textInputContainer}>
+            <Text style={appStyles.textInputLabel}>{props.label}</Text>
+            <TextInput style={appStyles.textInput} {...props} />
         </View>
     );
 }

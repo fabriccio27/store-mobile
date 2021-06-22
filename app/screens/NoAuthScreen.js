@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, Image} from "react-native";
-import appStyles from '../appStyles';
+import appStyles from '../styles/appStyles';
 
 function NoAuthScreen() {
     return (
