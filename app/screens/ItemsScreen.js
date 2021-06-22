@@ -1,14 +1,16 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useContext} from 'react';
 import {View, Text, FlatList, Button, Alert, BackHandler} from "react-native";
 import loading from '../utils/loading';
 import items from "../availableItems";
 import Item from '../components/Item';
 import ItemsContext from "../utils/ItemsContext";
+import AuthContext from '../utils/AuthContext';
 
 
 //este va wrappeado porque supuestamente fui a buscar info de items
-const  ItemsScreen = loading(({navigation}) => {
-
+//COMO HAGO PARA QUE TODOS PARTAN DEL MISMO PERO DESPUES CADA UNO TENGA EL SUYO
+const ItemsScreen = loading(({navigation}) => {
+    const {articulos, setArticulos}= useContext(AuthContext)
     useEffect(() => {
         const backAction = () => {
           Alert.alert("Momento", "Queres salir de la app?", [
@@ -22,7 +24,7 @@ const  ItemsScreen = loading(({navigation}) => {
           ]);
           return true;
         };
-    
+        
         const backHandler = BackHandler.addEventListener(
           "hardwareBackPress",
           backAction
@@ -32,10 +34,9 @@ const  ItemsScreen = loading(({navigation}) => {
       }, []);
 
     //tengo que modificar la barra superior, la hago un componente y a los text les mando un boton
-    const [articulos, setArticulos]= useState(items)
     
     return (
-      <ItemsContext.Provider value={{setArticulos, articulos}}>
+      
         <View>
             <FlatList 
                 data={articulos} 
@@ -44,8 +45,8 @@ const  ItemsScreen = loading(({navigation}) => {
                 }}
             />
         </View>
-      </ItemsContext.Provider>
+      
     );
-})
+});
 
 export default ItemsScreen;

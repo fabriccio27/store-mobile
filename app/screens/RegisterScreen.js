@@ -50,16 +50,25 @@ function RegisterScreen({navigation}) {
     
     const PassMatch = () => {
         return <Text style={appStyles.greenMessage}>Password coinciden!</Text>
-    }
+    };
     const NoPassMatch = () => {
         return <Text style={appStyles.pendingMessage}>Los campos de password aun no coinciden</Text>
+    };
+
+    const submitRegister = () => {
+        const userInfo = {
+            username,
+            email,
+            password
+        };
+        console.log(JSON.stringify(userInfo));
+        //simular fetch POST a con JSON
     }
 
     return (
         <View style={appStyles.container}>
             <ImageBackground source={require("../assets/fillOutForm.jpeg")} style={appStyles.backgroundImage}>
 
-            
             <Input label="Registra tu nombre de usuario:" onChangeText={(user) => setUsername(user)}/>
             <Input label="Email:" onChangeText={(em) => setEmail(em)} />
             <Input label="Password" secureTextEntry onChangeText={(ps) => setPassword(ps)} onEndEditing={checkPassword} />
@@ -68,6 +77,8 @@ function RegisterScreen({navigation}) {
             {psMatch?<PassMatch/>:<NoPassMatch/>}
             {/* aca por ahi tendria que pasar un objeto que diga que estoy autenticado, y que use eso para 
             modelar que hace apretar back */}
+            {/* aca tengo que ver si exporto un json  */}
+            <Button title="Printear info" onPress={submitRegister}/>
             <Button title="Confirmar" disabled={buttonDisabled} onPress={()=>navigation.navigate("Login")} color="#241c1b" />
             </ImageBackground>
             

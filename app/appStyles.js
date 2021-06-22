@@ -28,13 +28,15 @@ export default StyleSheet.create({
         paddingLeft:10 
     },
     listItem:{
+        alignSelf:"center",
         flexDirection:"column",
         justifyContent:"space-between",
         margin: 5,
-        padding: 5,
+        padding: 10,
         color: "slategrey",
         backgroundColor: "ghostwhite",
-        textAlign: "center"
+        textAlign: "center",
+        width:"80%"
     },
     titleOrHeader:{
         fontFamily:"monospace",
@@ -66,5 +68,19 @@ export default StyleSheet.create({
         backgroundColor:"crimson",
         marginBottom:5,
         padding:5
+    },
+    amountButton:{
+        backgroundColor:"lightblue",
+        borderRadius:20,
+        color:"white",
+        fontSize:20,
+        margin:5,
+        padding:10,
+        textAlign:"center",
+        width:40
+    },
+    amountNumber:{
+        fontSize:20,
+        marginTop:10
     }
 });

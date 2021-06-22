@@ -3,6 +3,7 @@ import { Text } from "react-native";
 import { createStackNavigator } from "react-navigation-stack";
 
 import Items from "../screens/ItemsScreen";
+import Finish from "../screens/FinishOpScreen";
 import ShopButton from "../components/ShopButton";
 import LogoutButton from "../components/LogoutButton";
 
@@ -17,6 +18,13 @@ const AppStack = createStackNavigator({
           headerLeft:()=><LogoutButton/>/* <Text onPress={()=>navigation.navigate("AuthLoading")}>Cerrar</Text> */,
           headerRight:()=><ShopButton/>
         })
+    },
+    Finish:{
+      screen:Finish,
+      navigationOptions:({navigation})=>({
+        title:"Completa tu compra"
+      })
+
     }
 })
 
