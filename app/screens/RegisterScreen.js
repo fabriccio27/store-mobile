@@ -1,10 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import  {View, Text, Button} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Input from "../components/Input";
 import appStyles from "../styles/appStyles";
 import ImageBackground from 'react-native/Libraries/Image/ImageBackground';
 
+import hashFunction from "../utils/hashFunction";
 
 function RegisterScreen({navigation}) {
     // state
@@ -59,8 +61,26 @@ function RegisterScreen({navigation}) {
         const userInfo = {
             username,
             email,
-            password
+            password,
+            shopState:[
+                {key:"1", id: 1, value: 0, description:"Auriculares", price:120 },
+                {key:"2", id: 2, value: 0, description:"Almohada Viscoelastica", price:250 },
+                {key:"3", id: 3, value: 0, description:"Lector e-books", price:380 },
+                {key:"4", id: 4, value: 0, description:"Afeitadora", price:170 }
+            ]
         };
+        const userHash = hashFunction(username.trim()+password.trim()).toString();
+        
+        AsyncStorage.setItem(userHash, JSON.stringify(userInfo))
+        .then(()=>console.log("Registrado!"))
+        .then(()=>navigation.navigate("Login"))
+        .catch(err=>console.log("Paso esto tratando de escribir registro: ", err));
+
+        /* 
+        escribir a async-storage con key igual hash de username y password
+        value seria userInfo en json
+        */
+
         console.log(JSON.stringify(userInfo));
         //simular fetch POST a con JSON
     }
@@ -79,7 +99,7 @@ function RegisterScreen({navigation}) {
             modelar que hace apretar back */}
             {/* aca tengo que ver si exporto un json  */}
             {/* <Button title="Printear info" onPress={submitRegister}/> */}
-            <Button title="Confirmar" disabled={buttonDisabled} onPress={()=>navigation.navigate("Login")} color="#241c1b" />
+            <Button title="Confirmar" disabled={buttonDisabled} onPress={submitRegister} color="#241c1b" />
             </ImageBackground>
             
         </View>
