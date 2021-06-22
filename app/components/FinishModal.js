@@ -2,7 +2,8 @@ import React from "react";
 import {Modal, Text, Pressable, View} from "react-native";
 import modalStyles from "../styles/modalStyles";
 
-const FinishModal = ({finishModalVisible,setFinishModalVisible, total})=>{
+const FinishModal = ({finishModalVisible,setFinishModalVisible, total, showFinishModal})=>{
+  
     return(
         <Modal
             animationType="slide"
@@ -14,10 +15,10 @@ const FinishModal = ({finishModalVisible,setFinishModalVisible, total})=>{
         >
             <View style={modalStyles.centeredView}>
               <View style={modalStyles.modalView}>
-                <Text style={modalStyles.modalText}>Estas por completar pago de {total}</Text>
+                <Text style={modalStyles.modalText}>Estas por completar pago de ${total}</Text>
                 <Pressable
                   style={[modalStyles.button, modalStyles.buttonClose]}
-                  onPress={() => setFinishModalVisible(!finishModalVisible)}
+                  onPress={showFinishModal}
                 >
                   <Text style={modalStyles.textStyle}>Si</Text>
                 </Pressable>

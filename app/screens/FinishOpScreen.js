@@ -14,7 +14,7 @@ function FinishOpScreen({navigation}) {
     const {userSession} = useContext(AuthContext);
     
     const [recuperado, setRecuperado] =  useState(null);
-    //const [finishModalVisible, setFinishModalVisible] = useState(false);
+    const [finishModalVisible, setFinishModalVisible] = useState(false);
     //const [detailModalVisible, setDetailModalVisible] = useState(false);
 
 
@@ -43,6 +43,11 @@ function FinishOpScreen({navigation}) {
       };
     },[]);
     
+    const showFinishModal=()=>{
+      setFinishModalVisible(!finishModalVisible);
+    }
+    
+
     if(!recuperado){
       return <Text> Espere por favor...</Text>
     }else{
@@ -52,7 +57,20 @@ function FinishOpScreen({navigation}) {
       },0); 
       return(
         <View style={styles.centeredView}>
-                  <Text>Ya cargue, tenes que pagar {total}</Text>
+          <FinishModal 
+            finishModalVisible={finishModalVisible} 
+            setFinishModalVisible={setFinishModalVisible} 
+            total={total}
+            showFinishModal={showFinishModal}
+          />
+          {/* <DetailsModal detailModalVisible={detailModalVisible} setDetailModalVisible={setDetailModalVisible} total={total}/> */}
+          <Text style={styles.mainInfo}>{total==0?"Aun no tenes nada en tu carrito":`Tu compra suma $${total}`}</Text>
+          <Pressable
+                style={[styles.button, styles.buttonOpen]}
+                onPress={showFinishModal}
+            >
+                <Text style={styles.textStyle}>Confirmar Pago</Text>
+            </Pressable>
         </View>
         
       )
@@ -66,7 +84,6 @@ function FinishOpScreen({navigation}) {
             <FinishModal finishModalVisible={finishModalVisible} setFinishModalVisible={setFinishModalVisible} total={total}/>
             <DetailsModal detailModalVisible={detailModalVisible} setDetailModalVisible={setDetailModalVisible} total={total}/>
             
-            <Text style={styles.mainInfo}>{total==0?"Aun no tenes nada en tu carrito":`Tu compra suma $${total}`}</Text>
             
             <Pressable
                 style={[styles.button, styles.buttonOpen]}
@@ -74,13 +91,6 @@ function FinishOpScreen({navigation}) {
             >
                 <Text style={styles.textStyle}>Ver Detalle</Text>
             </Pressable>
-            <Pressable
-                style={[styles.button, styles.buttonOpen]}
-                onPress={() => console.log("what") }
-            >
-                <Text style={styles.textStyle}>Confirmar Pago</Text>
-            </Pressable>
-
         </View>
     ); */
 }
