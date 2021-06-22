@@ -1,13 +1,18 @@
 import React, {useEffect, useContext, useState} from 'react';
-import {View, Text, FlatList, Button, Alert, BackHandler} from "react-native";
-import AppLoading from 'expo-app-loading';
-import loading from '../utils/loading';
-import items from "../availableItems";
-import Item from '../components/Item';
-import ItemsContext from "../utils/ItemsContext";
-import AuthContext from '../utils/AuthContext';
+import {View, Text, FlatList, Alert, BackHandler} from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import loading from '../utils/loading';
+import Item from '../components/Item';
+
+import AuthContext from '../utils/AuthContext';
+import SessionContext from "../utils/SessionContext";
+
 import users from '../registeredUsers';
+import ItemsContext from "../utils/ItemsContext";
+import items from "../availableItems";
+import AppLoading from 'expo-app-loading';
+
 
 
 //este va wrappeado porque supuestamente fui a buscar info de items
@@ -15,8 +20,9 @@ import users from '../registeredUsers';
 const ItemsScreen = loading(({navigation}) => {
     /* const {articulos, setArticulos}= useContext(AuthContext) */
     const {userSession} =  useContext(AuthContext);
-    const [isReady, setIsReady] = useState(false);
+  
     const [recuperado, setRecuperado] =  useState(null);
+
     useEffect(() => {
         const backAction = () => {
           Alert.alert("Momento", "Queres salir de la app?", [
@@ -42,49 +48,34 @@ const ItemsScreen = loading(({navigation}) => {
     const fetchUserInfo=()=>{
       AsyncStorage.getItem(userSession)
       .then(resp =>{
-        console.log(resp);
         setRecuperado(JSON.parse(resp));
-        setIsReady(true);
       })
       .catch(err=>console.log("Esto paso tratando de recuperar info de usuario", err));
     }
     
     useEffect(()=>{
       fetchUserInfo();
-    },[])
-    //por ahi no necesito state isReady, como defini recuperado como null, si hago !recuperado deberia andar.
-    if (!isReady){
-      return <Text>Recuperando tu informacion...</Text>
-    }
-    /* return <Text>Ya estamos cargados!</Text> */
-    return(
-      <View>
-            <FlatList 
-                data={recuperado.shopState} 
-                renderItem={({item})=>{
-                    return <Item item={item} />
-                }}
-            />
-      </View>
+    },[recuperado]); //si no hago que escuche a recuperado, no me muestra la actualizacion
 
-    )
-    /* if (!isReady){
-      return <AppLoading startAsync={fetchUserInfo} onFinish={setIsReady(true)}/>
-    } */
-    /* useEffect(()=>{
-      return (
-      
+    if (!recuperado){
+      return <Text>Recuperando tu informacion...</Text>
+    }else{
+      return(
+        <SessionContext.Provider value={{recuperado, setRecuperado}}>
         <View>
-            <FlatList 
-                data={recuperado} 
-                renderItem={({item})=>{
-                    return <Item item={item} />
-                }}
-            />
+              <FlatList 
+                  data={recuperado.shopState} 
+                  renderItem={({item})=>{
+                      return <Item item={item} />
+                  }}
+              />
         </View>
-      
+        </SessionContext.Provider>
       );
-    },[recuperado]); */
+
+    }
+    
+    
     
 });
 

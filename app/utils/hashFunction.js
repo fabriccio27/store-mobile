@@ -1,3 +1,10 @@
+/* 
+
+Credito de hash function es para:
+
+https://stackoverflow.com/a/52171480
+
+*/
 const cyrb53 = function(str, seed = 0) {
     let h1 = 0xdeadbeef ^ seed, h2 = 0x41c6ce57 ^ seed;
     for (let i = 0, ch; i < str.length; i++) {

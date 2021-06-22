@@ -1,26 +1,44 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {View, Text, Alert} from "react-native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import appStyles from '../styles/appStyles';
 import AuthContext from "../utils/AuthContext";
+import SessionContext from "../utils/SessionContext";
 
 function Item({item}) {
     //ver que esto deberia tener un display tipo row con varios Text adentro
     //probe con row y no queda muy bien, creo que tendria que armar una card
-    const {articulos, setArticulos} = useContext(AuthContext);
+    const {articulos, setArticulos, userSession} = useContext(AuthContext);
+    const {recuperado, setRecuperado} = useContext(SessionContext);
     
+    if(!recuperado){
+        return <Text>Estamos esperando...</Text>
+    }
     //conservar inmutabilidad
     //modificar selectivamente el state
-    const artCopy = [...articulos];
-    const idx = articulos.indexOf(item);
+    const recCopy = {...recuperado};
+    const idx = recuperado.shopState.indexOf(item);
+    
 
+    //tengo que escribir al AsyncStorage creo
     const handleInc = ()=>{
-        artCopy[idx].value++;
-        setArticulos(artCopy);
+        console.log("queriendo incrementar");
+        recCopy.shopState[idx].value++;
+        /* tengo que rescribir todo, o solo el shopState */
+        
+        AsyncStorage.setItem(userSession, JSON.stringify(recCopy))
+        .then(()=>console.log("Incrementado"));
     }
     const handleDec = ()=>{
-        artCopy[idx].value--;
-        setArticulos(artCopy);
+        recCopy.shopState[idx].value--;
+        AsyncStorage.setItem(userSession, JSON.stringify(recCopy))
+        .then(()=>console.log("Decrementado"));
     }
+        /* artCopy[idx].value--;
+        setArticulos(artCopy); */
+
+    
 
     return (
         <View style={appStyles.listItem}>

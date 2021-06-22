@@ -8,26 +8,58 @@ import AuthContext from '../utils/AuthContext';
 import ItemsContext from '../utils/ItemsContext';
 import appStyles from '../styles/appStyles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import SessionContext from '../utils/SessionContext';
 
 function FinishOpScreen({navigation}) {
-    const {articulos} = useContext(AuthContext);
-    const [finishModalVisible, setFinishModalVisible] = useState(false);
-    const [detailModalVisible, setDetailModalVisible] = useState(false);
-
-    /* console.log(articulos) */
-    const total = articulos.reduce((subt, art)=>{
-        return subt + art.value * art.price;
-    },0);
-
-    const pruebaStorage = () => {
-
-      console.log("Prueba en otro lugar");
-      AsyncStorage.getItem("prueba")
-      .then(response => console.log(response))
-      .catch(err=>console.log("Error => ", err));
-    }
+    const {userSession} = useContext(AuthContext);
     
-    return (
+    const [recuperado, setRecuperado] =  useState(null);
+    //const [finishModalVisible, setFinishModalVisible] = useState(false);
+    //const [detailModalVisible, setDetailModalVisible] = useState(false);
+
+
+    useEffect(()=>{
+      let isCancelled=false;
+
+      const getData = async () => {
+        try {
+          const jsonValue = await AsyncStorage.getItem(userSession)
+          if(!isCancelled){
+            const toSet = jsonValue != null ? JSON.parse(jsonValue) : null;
+            setRecuperado(toSet);
+          }
+          
+        } catch(e) {
+          if(!isCancelled){
+            console.log("errorrrr", e);
+          }
+        }
+      }
+      
+      getData();
+      return () => {
+        isCancelled = true;
+      };
+    },[]);
+    
+    if(!recuperado){
+      return <Text> Espere por favor...</Text>
+    }else{
+      console.log(recuperado);
+      const total = recuperado.shopState.reduce((subt, art)=>{
+        return subt + art.value * art.price;
+      },0); 
+      return(
+        <View style={styles.centeredView}>
+                  <Text>Ya cargue, tenes que pagar {total}</Text>
+        </View>
+        
+      )
+    }
+  
+    
+    
+    /* return (
         <View style={styles.centeredView}>
             
             <FinishModal finishModalVisible={finishModalVisible} setFinishModalVisible={setFinishModalVisible} total={total}/>
@@ -37,20 +69,19 @@ function FinishOpScreen({navigation}) {
             
             <Pressable
                 style={[styles.button, styles.buttonOpen]}
-                onPress={() => setDetailModalVisible(true)}
+                onPress={() => console.log("what")}
             >
                 <Text style={styles.textStyle}>Ver Detalle</Text>
             </Pressable>
             <Pressable
                 style={[styles.button, styles.buttonOpen]}
-                onPress={() => setFinishModalVisible(true)}
+                onPress={() => console.log("what") }
             >
                 <Text style={styles.textStyle}>Confirmar Pago</Text>
             </Pressable>
 
-            <Button title="prueba de storage" onPress={pruebaStorage}/>
         </View>
-    );
+    ); */
 }
 
 const styles = StyleSheet.create({
@@ -106,3 +137,11 @@ const styles = StyleSheet.create({
       }
 })
 export default FinishOpScreen;
+/* const pruebaStorage = () => {
+
+      console.log("Prueba en otro lugar");
+      AsyncStorage.getItem("prueba")
+      .then(response => console.log(response))
+      .catch(err=>console.log("Error => ", err));
+    } */
+    /* <Button title="prueba de storage" onPress={pruebaStorage}/> */

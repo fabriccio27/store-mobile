@@ -1,7 +1,5 @@
 # Store mobile
 
-# Ver si puedo usar localStorage o algo parecido para recuperar de ahi
-
 ## Recomendacion de testeo
 
 * Clonar repositorio de [aca](https://github.com/fabriccio27/store-mobile) **de rama auth-context**. 
@@ -22,3 +20,12 @@ git clone -b auth-context https://github.com/fabriccio27/store-mobile.git
 - Uso de `Modal` para acciones de confirmacion.
 - Doy acceso a componentes que no son screen a propiedad `navigation` mediante `useNavigation` de `react-navigation`.
 - Implementacion de pantalla de `loading` como wrapper de componentes, simulando tiempo de llamada a API externa.
+
+## Logica de Auth
+
+- Se usa libreria AsyncStorage para escribir info de registros y estado de usuarios en JSON.
+- En registro de usuario se genera hash de string combinacion de user y password, y se usa dicho hash como key para el AsyncStorage.
+- Se usa hash function extraida de [acá](https://stackoverflow.com/a/52171480).
+- En inicio de sesion se usa de nuevo combinacion de user y password para reproducir hash y buscar ese key en AsyncStorage. Si no lo encuentra, manda a credenciales invalidas (ya que no se habria generado durante el registro, y los hash son reproducibles, mismo user y password siempre generan el mismo hash).
+- Si la autentificacion es exitosa, setea en state general (presente en App.js) el hash de la "sesion" actual.
+- Con dicha sesion, recupera info de las compras del usuario de credenciales validadas.

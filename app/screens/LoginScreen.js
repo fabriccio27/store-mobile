@@ -40,7 +40,7 @@ const LoginScreen = ({navigation})=> {
                 if (!resp) {
                     navigation.navigate("NoAuth");
                 } 
-                console.log("Leido de async storage: ", resp)
+                /* console.log("Leido de async storage: ", resp) */
                 /* si esta todo bien, setear Auth a true, y quien esta loggeado por el hash, luego navegar a Items  */
                 setAuth(true);
                 setUserSession(generatedHash);
