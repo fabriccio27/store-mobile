@@ -82,5 +82,20 @@ export default StyleSheet.create({
     amountNumber:{
         fontSize:20,
         marginTop:10
-    }
+    },
+    itemTitle:{
+        fontWeight:"bold",
+        fontSize:25,
+        textAlign:"center"
+    },
+    itemPrice:{
+        fontSize:20,
+        marginLeft:10,
+        paddingTop:5
+    },
+    upperCardSection:{
+        flexDirection:"row",
+        justifyContent:"center",
+        marginVertical:20
+    },
 });

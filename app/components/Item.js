@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {View, Text, StyleSheet, Alert} from "react-native";
+import {View, Text, Alert} from "react-native";
 import appStyles from '../appStyles';
 import AuthContext from "../utils/AuthContext";
 
@@ -24,9 +24,9 @@ function Item({item}) {
 
     return (
         <View style={appStyles.listItem}>
-            <View style={styles.upperCardSection}>
-                <Text style={styles.itemTitle}>{item.description}</Text>
-                <Text style={styles.itemPrice}>${item.price}</Text>
+            <View style={appStyles.upperCardSection}>
+                <Text style={appStyles.itemTitle}>{item.description}</Text>
+                <Text style={appStyles.itemPrice}>${item.price}</Text>
             </View>
 
             <View style={{flexDirection:"row", justifyContent:"space-around"}}>
@@ -41,26 +41,5 @@ function Item({item}) {
         </View>
     );
 }
-
-const styles = StyleSheet.create({
-    
-    itemTitle:{
-        fontWeight:"bold",
-        fontSize:25,
-        textAlign:"center"
-    },
-    upperCardSection:{
-        flexDirection:"row",
-        justifyContent:"center",
-        marginVertical:20
-    },
-    itemPrice:{
-        fontSize:20,
-        marginLeft:10,
-        paddingTop:5
-    }
-    
-})
-
 
 export default Item;
