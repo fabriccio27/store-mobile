@@ -5,10 +5,10 @@ import FinishModal from '../components/FinishModal';
 import DetailsModal from '../components/DetailsModal';
 
 import AuthContext from '../utils/AuthContext';
-import ItemsContext from '../utils/ItemsContext';
+
 import appStyles from '../styles/appStyles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import SessionContext from '../utils/SessionContext';
+
 
 function FinishOpScreen({navigation}) {
     const {userSession} = useContext(AuthContext);
@@ -47,14 +47,14 @@ function FinishOpScreen({navigation}) {
       setFinishModalVisible(!finishModalVisible);
     }
     
-
     if(!recuperado){
       return <Text> Espere por favor...</Text>
     }else{
       /* console.log(recuperado); */
       const total = recuperado.shopState.reduce((subt, art)=>{
         return subt + art.value * art.price;
-      },0); 
+      },0);
+
       return(
         <View style={styles.centeredView}>
           <FinishModal 
@@ -62,37 +62,23 @@ function FinishOpScreen({navigation}) {
             setFinishModalVisible={setFinishModalVisible} 
             total={total}
             showFinishModal={showFinishModal}
+            navigation={navigation}
           />
           {/* <DetailsModal detailModalVisible={detailModalVisible} setDetailModalVisible={setDetailModalVisible} total={total}/> */}
           <Text style={styles.mainInfo}>{total==0?"Aun no tenes nada en tu carrito":`Tu compra suma $${total}`}</Text>
-          <Pressable
+          {total!=0 && (<Pressable
                 style={[styles.button, styles.buttonOpen]}
                 onPress={showFinishModal}
             >
                 <Text style={styles.textStyle}>Confirmar Pago</Text>
-            </Pressable>
+          </Pressable>)}
         </View>
-        
-      )
+
+      );
     }
   
     
     
-    /* return (
-        <View style={styles.centeredView}>
-            
-            <FinishModal finishModalVisible={finishModalVisible} setFinishModalVisible={setFinishModalVisible} total={total}/>
-            <DetailsModal detailModalVisible={detailModalVisible} setDetailModalVisible={setDetailModalVisible} total={total}/>
-            
-            
-            <Pressable
-                style={[styles.button, styles.buttonOpen]}
-                onPress={() => console.log("what")}
-            >
-                <Text style={styles.textStyle}>Ver Detalle</Text>
-            </Pressable>
-        </View>
-    ); */
 }
 
 const styles = StyleSheet.create({

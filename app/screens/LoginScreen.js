@@ -1,4 +1,4 @@
-import React, {useState,useEffect,useContext} from 'react';
+import React, {useState, useContext} from 'react';
 import {View, Text, Button, ImageBackground} from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -6,7 +6,6 @@ import hashFunction from "../utils/hashFunction";
 
 import appStyles from '../styles/appStyles';
 import Input from "../components/Input";
-import registeredUsers from "../registeredUsers";
 import AuthContext from '../utils/AuthContext';
 
 
@@ -17,20 +16,8 @@ const LoginScreen = ({navigation})=> {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    /* const [isAuth, setAuth] = useState(false); */
     
-    useEffect(()=>{
-        checkLogin();
-    },[username,password]);
-
-    const checkLogin =()=>{
-        if (username.length>0 && password.length>0){
-            //includes checkea igualdad de referencia, por eso si comparo username y password con info hardcodeada da false
-            registeredUsers.some(usr=>usr.username==username && usr.password==password)?setAuth(true):setAuth(false);
-        }else{
-            setAuth(false);
-        }
-    };
+    
 
     const checkLoginAlt=()=>{
         if (username.trim().length!==0 && password.trim().length!==0){
@@ -40,7 +27,6 @@ const LoginScreen = ({navigation})=> {
                 if (!resp) {
                     navigation.navigate("NoAuth");
                 } 
-                /* console.log("Leido de async storage: ", resp) */
                 /* si esta todo bien, setear Auth a true, y quien esta loggeado por el hash, luego navegar a Items  */
                 setAuth(true);
                 setUserSession(generatedHash);
@@ -51,7 +37,7 @@ const LoginScreen = ({navigation})=> {
             navigation.navigate("NoAuth");
         }
     }
-    /* console.log(`is authenticated? ${isAuth}`); */
+
     return (
         <View style={appStyles.container}>
             <ImageBackground source={require("../assets/bikeWall.jpg")} style={appStyles.backgroundImage}>
@@ -59,12 +45,12 @@ const LoginScreen = ({navigation})=> {
                 <Input label="Usuario" onChangeText={(usr)=>setUsername(usr)}/>
                 <Input label="Password" secureTextEntry onChangeText={(ps)=>setPassword(ps)}/>
                 {/* puse el title dentro de navigate para ver si modificaba, y si */}
-                <Button 
+                {/* <Button 
                     title="Ingresar" 
                     onPress={() => isAuth? navigation.navigate("Items"):navigation.navigate("NoAuth")} 
                     color="#241c1b"
-                />
-                <Button title="Login Alt" onPress={checkLoginAlt}/>
+                /> */}
+                <Button title="Ingresar" onPress={checkLoginAlt} color="#241c1b"/>
             </ImageBackground>
             
             {/* <Button 
