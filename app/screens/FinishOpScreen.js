@@ -1,5 +1,5 @@
 import React, {useEffect, useContext, useState} from 'react';
-import {View, Text, Pressable, StyleSheet} from "react-native";
+import {View, Text, Pressable, StyleSheet, Button} from "react-native";
 
 import FinishModal from '../components/FinishModal';
 import DetailsModal from '../components/DetailsModal';
@@ -7,6 +7,7 @@ import DetailsModal from '../components/DetailsModal';
 import AuthContext from '../utils/AuthContext';
 import ItemsContext from '../utils/ItemsContext';
 import appStyles from '../styles/appStyles';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function FinishOpScreen({navigation}) {
     const {articulos} = useContext(AuthContext);
@@ -18,6 +19,13 @@ function FinishOpScreen({navigation}) {
         return subt + art.value * art.price;
     },0);
 
+    const pruebaStorage = () => {
+
+      console.log("Prueba en otro lugar");
+      AsyncStorage.getItem("prueba")
+      .then(response => console.log(response))
+      .catch(err=>console.log("Error => ", err));
+    }
     
     return (
         <View style={styles.centeredView}>
@@ -39,6 +47,8 @@ function FinishOpScreen({navigation}) {
             >
                 <Text style={styles.textStyle}>Confirmar Pago</Text>
             </Pressable>
+
+            <Button title="prueba de storage" onPress={pruebaStorage}/>
         </View>
     );
 }

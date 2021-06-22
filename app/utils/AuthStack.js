@@ -8,6 +8,8 @@ import Share from "../screens/ShareScreen";
 import NoAuth from "../screens/NoAuthScreen";
 import ShareButton from "../components/ShareButton";
 
+import TestScreen from "../screens/TestScreen"
+
 const AuthStack = createStackNavigator({
     Welcome:{
         screen:Welcome,
@@ -15,16 +17,17 @@ const AuthStack = createStackNavigator({
           title:"Bienvenido",
           headerRight:()=><ShareButton navigation={navigation}/>
         })
-      }, 
-      Login, 
-      Register:{
+    },
+    TestScreen, 
+    Login, 
+    Register:{
         screen:Register,
         navigationOptions:()=>({
           title:"Datos basicos"
         })
-      },
-      Share,
-      NoAuth
+    },
+    Share,
+    NoAuth
 },
 {initialRouteName:"Welcome"})
 

@@ -20,6 +20,7 @@ function WelcomeScreen({navigation}) {
                 <Image source={require("../assets/notebook.png")} style={appStyles.logo}/>
                 <Button title="Iniciar Sesion" onPress={()=>navigation.navigate("Login")} color="#241c1b"/>
                 <Button title="Registrarse" onPress={()=>navigation.navigate("Register")} color="#241c1b"/>
+                <Button title="TEST STORAGE" onPress={()=>navigation.navigate("TestScreen")} color="#241c1b"/>
             </ImageBackground>
             
             {/* <View style={styles.login}>
