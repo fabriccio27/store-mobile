@@ -13,12 +13,12 @@ const FirstScreen = ({navigation})=>{
     useEffect(()=>{
         setTimeout(()=>{
             navigation.navigate(isAuth?"App":"Auth");
-        },3000)
+        },1500)
     },[])
 
     return (
         <View style={appStyles.container}>
-            <ActivityIndicator color="black"/>
+            <ActivityIndicator size="large" color="black"/>
         </View>
     );
 }
