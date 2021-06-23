@@ -7,7 +7,7 @@ import DetailsModal from '../components/DetailsModal';
 
 import AuthContext from '../utils/AuthContext';
 
-import appStyles from '../styles/appStyles';
+import modalStyles from '../styles/modalStyles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
@@ -57,7 +57,7 @@ function FinishOpScreen({navigation}) {
       },0);
 
       return(
-        <View style={styles.centeredView}>
+        <View style={modalStyles.centeredView}>
           <FinishModal 
             finishModalVisible={finishModalVisible} 
             setFinishModalVisible={setFinishModalVisible} 
@@ -66,80 +66,18 @@ function FinishOpScreen({navigation}) {
             navigation={navigation}
           />
           {/* <DetailsModal detailModalVisible={detailModalVisible} setDetailModalVisible={setDetailModalVisible} total={total}/> */}
-          <Text style={styles.mainInfo}>{total==0?"Aun no tenes nada en tu carrito":`Tu compra suma $${total}`}</Text>
+          <Text style={modalStyles.mainInfo}>{total==0?"Aun no tenes nada en tu carrito":`Tu compra suma $${total}`}</Text>
           {total!=0 && (<Pressable
-                style={[styles.button, styles.buttonOpen]}
+                style={[modalStyles.button, modalStyles.buttonOpen]}
                 onPress={showFinishModal}
             >
-                <Text style={styles.textStyle}>Confirmar Pago</Text>
+                <Text style={modalStyles.textStyle}>Confirmar Pago</Text>
           </Pressable>)}
         </View>
 
       );
     }
   
-    
-    
 }
 
-const styles = StyleSheet.create({
-    mainInfo:{
-      color:"white",
-      fontWeight:"bold",
-      fontSize:20,
-      margin:10,
-      padding:10
-    },  
-    centeredView: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        /* marginTop: 22, */
-        backgroundColor:"#8c9ba0"
-      },
-      modalView: {
-        margin: 20,
-        backgroundColor: "white",
-        borderRadius: 10,
-        padding: 35,
-        alignItems: "center",
-        shadowColor: "#000",
-        shadowOffset: {
-          width: 0,
-          height: 2
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 4,
-        elevation: 5
-      },
-      button: {
-        borderRadius: 20,
-        marginVertical:10,
-        padding: 10,
-        elevation: 2
-      },
-      buttonOpen: {
-        backgroundColor: "#2c5753",
-      },
-      buttonClose: {
-        backgroundColor: "#2196F3",
-      },
-      textStyle: {
-        color: "white",
-        fontWeight: "bold",
-        textAlign: "center"
-      },
-      modalText: {
-        marginBottom: 15,
-        textAlign: "center"
-      }
-})
 export default FinishOpScreen;
-/* const pruebaStorage = () => {
-
-      console.log("Prueba en otro lugar");
-      AsyncStorage.getItem("prueba")
-      .then(response => console.log(response))
-      .catch(err=>console.log("Error => ", err));
-    } */
-    /* <Button title="prueba de storage" onPress={pruebaStorage}/> */

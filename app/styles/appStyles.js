@@ -9,6 +9,7 @@ export default StyleSheet.create({
         /* backgroundColor:"#333131" */
     },
     textInputContainer:{
+        
         alignSelf:"center",
         backgroundColor: "rgba(77, 65, 60,0.7)" ,
         borderRadius:5,
@@ -18,12 +19,10 @@ export default StyleSheet.create({
     },
     textInputLabel:{
         color:"white",
-        fontSize:18
+        fontSize:15
     },
     textInput:{
         color:"black",
-        borderWidth:2,
-        borderColor:"black",
         backgroundColor: "#eae1dd",
         paddingLeft:10 
     },
@@ -98,6 +97,22 @@ export default StyleSheet.create({
         justifyContent:"center",
         alignItems:"center",
         marginVertical:20
+    },
+    welcomeButton:{
+        backgroundColor:"#2b0f07",
+        borderRadius:2,
+        marginVertical:5,
+        padding:13
+    },
+    welcomeButtonText:{
+        color:"white",
+        fontSize:15
+    },
+    shareBottomText:{
+        color:"white", 
+        fontWeight:"bold", 
+        textAlign:"center", 
+        marginVertical:5, 
+        width:"60%"
     }
-    
 });

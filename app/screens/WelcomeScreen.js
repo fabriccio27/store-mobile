@@ -1,38 +1,38 @@
 import React from 'react';
-import  {View, Text, StyleSheet, ImageBackground, Image, Button} from 'react-native';
+import  {View, Text, StyleSheet, ImageBackground, Image} from 'react-native';
 import appStyles from '../styles/appStyles';
+
 import AppLoading from 'expo-app-loading';
+import WelcomeButton from '../components/WelcomeButton';
+
 import { useFonts, Oswald_200ExtraLight } from '@expo-google-fonts/oswald';
+
 function WelcomeScreen({navigation}) {
 
     let [fontsLoaded] = useFonts({
         Oswald_200ExtraLight,
-      });
+    });
     
-      if (!fontsLoaded) {
-        return <AppLoading />;
-      }
+    if (!fontsLoaded) {
+      return <AppLoading />;
+    }
     return (
         <View style={styles.container}>
             
             <ImageBackground source={require("../assets/aparador.jpg")} style={styles.image}>
                 <Text style={styles.upperText}>ACERCATE AL CONFORT QUE MERECES</Text>
                 <Image source={require("../assets/notebook.png")} style={appStyles.logo}/>
-                <Button title="Iniciar Sesion" onPress={()=>navigation.navigate("Login")} color="#241c1b"/>
-                <Button title="Registrarse" onPress={()=>navigation.navigate("Register")} color="#241c1b"/>
-                {/* <Button title="Testear storage" onPress={()=>navigation.navigate("TestScreen")} color="#241c1b"/> */}
+                
+                <WelcomeButton innerText={"Iniciar Sesion"} destination={"Login"}/>
+                <WelcomeButton innerText={"Registrarse"} destination={"Register"}/>
+                
             </ImageBackground>
-            
-            {/* <View style={styles.login}>
-                <Text style={styles.lowerText} onPress={()=>navigation.navigate("Login")}>Login</Text>
-            </View>
-            <View style={styles.register}>
-                <Text style={styles.lowerText} onPress={()=>navigation.navigate("Register")}>Register</Text>
-            </View> */}
-
+        
         </View>
     );
-}
+};
+
+/* mover esto a archivo de styles me causó problemas, lo dejo acá para que no rompa */
 const styles = StyleSheet.create({
     container:{
         flex:1

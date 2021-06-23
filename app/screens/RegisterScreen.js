@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import  {View, Text, Button} from 'react-native';
+import  {View, Text, Button, ScrollView} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Input from "../components/Input";
@@ -36,8 +36,8 @@ function RegisterScreen({navigation}) {
     
     //esto lo ejecuto cuando termino de completar?
     const checkPassword = () =>{
-        console.log("We got to check the password");
-        if (password === repeatpassword){
+        
+        if (password === repeatpassword && password.trim()!==""){
             /* console.log(`${password} and ${repeatpassword}`); */
             setPsMatch(true);
         }else{
@@ -80,9 +80,8 @@ function RegisterScreen({navigation}) {
         escribir a async-storage con key igual hash de username y password
         value seria userInfo en json
         */
-
         console.log(JSON.stringify(userInfo));
-        //simular fetch POST a con JSON
+        
     }
 
     return (
