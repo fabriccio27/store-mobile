@@ -10,6 +10,7 @@ import ShareButton from "../components/ShareButton";
 
 import TestScreen from "../screens/TestScreen"
 /* import MockCompleted from "../screens/MockCompleted"; esto era para testeo rapido, que sea lo primero que cargue*/ 
+import CategoriesScreen from "../screens/CategoriesScreen";
 
 const AuthStack = createStackNavigator({
     Welcome:{
@@ -28,9 +29,10 @@ const AuthStack = createStackNavigator({
         })
     },
     Share,
+    CategoriesScreen,
     /* MockCompleted, */
     NoAuth
 },
-{initialRouteName:"Welcome"})
+{initialRouteName:"CategoriesScreen"})
 
 export default AuthStack;

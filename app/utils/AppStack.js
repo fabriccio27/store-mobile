@@ -5,6 +5,9 @@ import { createStackNavigator } from "react-navigation-stack";
 import Items from "../screens/ItemsScreen";
 import Finish from "../screens/FinishOpScreen";
 import Completed from "../screens/MockCompleted";
+import Categories from "../screens/CategoriesScreen";
+import Category from "../screens/CategoryScreen";
+
 import ShopButton from "../components/ShopButton";
 import LogoutButton from "../components/LogoutButton";
 
@@ -26,6 +29,8 @@ const AppStack = createStackNavigator({
         title:"Completa tu compra"
       })
     },
+    Categories,
+    Category,
     Completed
 })
 

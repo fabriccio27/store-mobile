@@ -113,5 +113,11 @@ export default StyleSheet.create({
         textAlign:"center", 
         marginVertical:5, 
         width:"60%"
+    },
+    backgroundImageCategories:{
+        flex:1, 
+        width:"100%", 
+        justifyContent:"space-evenly", 
+        alignItems:"center"
     }
 });
