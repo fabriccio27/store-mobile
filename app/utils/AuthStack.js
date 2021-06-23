@@ -9,6 +9,7 @@ import NoAuth from "../screens/NoAuthScreen";
 import ShareButton from "../components/ShareButton";
 
 import TestScreen from "../screens/TestScreen"
+import MockCompleted from "../screens/MockCompleted";
 
 const AuthStack = createStackNavigator({
     Welcome:{
@@ -27,8 +28,9 @@ const AuthStack = createStackNavigator({
         })
     },
     Share,
+    MockCompleted,
     NoAuth
 },
-{initialRouteName:"Welcome"})
+{initialRouteName:"MockCompleted"})
 
 export default AuthStack;
