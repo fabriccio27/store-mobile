@@ -63,10 +63,10 @@ function RegisterScreen({navigation}) {
             email,
             password,
             shopState:[
-                {key:"1", id: 1, value: 0, description:"Auriculares", price:120 },
-                {key:"2", id: 2, value: 0, description:"Almohada Viscoelastica", price:250 },
-                {key:"3", id: 3, value: 0, description:"Lector e-books", price:380 },
-                {key:"4", id: 4, value: 0, description:"Afeitadora", price:170 }
+                {key:"1", id: 1, value: 0, imageFilename:"auriculares.jpg",description:"Auriculares", price:120 },
+                {key:"2", id: 2, value: 0, imageFilename:"almohada.jpg",description:"Almohada Viscoelastica", price:250 },
+                {key:"3", id: 3, value: 0, imageFilename:"xiaomiReader.jpg",description:"Lector e-books", price:380 },
+                {key:"4", id: 4, value: 0, imageFilename:"afeitadora.jpg",description:"Afeitadora", price:170 }
             ]
         };
         const userHash = hashFunction(username.trim()+password.trim()).toString();

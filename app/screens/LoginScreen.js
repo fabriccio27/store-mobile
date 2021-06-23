@@ -21,11 +21,13 @@ const LoginScreen = ({navigation})=> {
 
     const checkLoginAlt=()=>{
         if (username.trim().length!==0 && password.trim().length!==0){
+            
             const generatedHash = hashFunction(username.trim() + password.trim()).toString();
             AsyncStorage.getItem(generatedHash)
             .then(resp=>{
+                //no andaba porque no tenia el return, y seguia el flujo de ejecucion
                 if (!resp) {
-                    navigation.navigate("NoAuth");
+                    return navigation.navigate("NoAuth");
                 } 
                 /* si esta todo bien, setear Auth a true, y quien esta loggeado por el hash, luego navegar a Items  */
                 setAuth(true);
@@ -34,7 +36,7 @@ const LoginScreen = ({navigation})=> {
             })
             .catch(err=>console.log("Error en loginalt: ", err));
         } else {
-            navigation.navigate("NoAuth");
+            return navigation.navigate("NoAuth");
         }
     }
 
@@ -44,12 +46,7 @@ const LoginScreen = ({navigation})=> {
                 <Text style={appStyles.titleOrHeader}>Es bueno tenerte de vuelta</Text>
                 <Input label="Usuario" onChangeText={(usr)=>setUsername(usr)}/>
                 <Input label="Password" secureTextEntry onChangeText={(ps)=>setPassword(ps)}/>
-                {/* puse el title dentro de navigate para ver si modificaba, y si */}
-                {/* <Button 
-                    title="Ingresar" 
-                    onPress={() => isAuth? navigation.navigate("Items"):navigation.navigate("NoAuth")} 
-                    color="#241c1b"
-                /> */}
+                {/* puse el title dentro de navigate para ver si modificaba, y si */}                
                 <Button title="Ingresar" onPress={checkLoginAlt} color="#241c1b"/>
             </ImageBackground>
             
@@ -58,7 +55,6 @@ const LoginScreen = ({navigation})=> {
                 onPress={testContext} 
                 color="#241c1b"
             /> */}
-            {/* si no hay usuario llevar a screen de credenciales invalidas, si hay levantar mostrar loading y redirigir */}
         </View>
     );
 };

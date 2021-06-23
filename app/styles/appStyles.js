@@ -41,7 +41,6 @@ export default StyleSheet.create({
         fontFamily:"monospace",
         fontSize:15,
         backgroundColor:"rgba(111, 72, 49,0.8)",
-        /* backgroundColor:"#f06414", */
         color:"white",
         padding:20
     },

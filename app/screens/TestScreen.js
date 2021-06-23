@@ -44,6 +44,10 @@ const TestScreen = ({navigation})=> {
         .catch(err=>console.log("Error al leer: ", err));
         
     };
+    const borrarTodoStorage=()=>{
+        console.log("Tratando de borrar todo");
+        
+    }
 
     return (
         <View style={appStyles.container}>
@@ -55,12 +59,9 @@ const TestScreen = ({navigation})=> {
 
                 <Button title="ESCRIBIR" onPress={escribirStorage}/>
                 <Button title="LEER" onPress={leerStorage}/>
+                <Button title="LEER" onPress={borrarTodoStorage}/>
 
-                <Button 
-                    title="Ingresar" 
-                    onPress={() => isAuth? navigation.navigate("Items"):navigation.navigate("NoAuth")} 
-                    color="#241c1b"
-                />
+                
             </ImageBackground>
             
         </View>

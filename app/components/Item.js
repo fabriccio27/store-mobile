@@ -1,12 +1,13 @@
 import React, {useContext} from 'react';
-import {View, Text, Alert} from "react-native";
+import {View, /* Modal,  */Image, Text, Alert} from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import appStyles from '../styles/appStyles';
+import imagesTable from "../utils/imagesHashtable"
 import AuthContext from "../utils/AuthContext";
 import BriefLoading from './BriefLoading';
 import SessionContext from "../utils/SessionContext";
-
+/* import modalStyles from '../styles/modalStyles'; */
 
 function Item({item}) {
 
@@ -22,27 +23,24 @@ function Item({item}) {
     //modificar selectivamente el state
     const recCopy = {...recuperado};
     const idx = recuperado.shopState.indexOf(item);
-    
 
-    //tengo que escribir al AsyncStorage creo
+    //tengo que escribir al AsyncStorage creo, esto creo que tendria que estar en ItemsScreen
     const handleInc = ()=>{
         recCopy.shopState[idx].value++;
         /* tengo que rescribir todo, o solo el shopState */
-        
-        AsyncStorage.setItem(userSession, JSON.stringify(recCopy))
-        .then(()=>console.log("Incrementado"));
+        AsyncStorage.setItem(userSession, JSON.stringify(recCopy));
     }
     const handleDec = ()=>{
         recCopy.shopState[idx].value--;
-        AsyncStorage.setItem(userSession, JSON.stringify(recCopy))
-        .then(()=>console.log("Decrementado"));
+        AsyncStorage.setItem(userSession, JSON.stringify(recCopy));
     }
  
-
     return (
         <View style={appStyles.listItem}>
+            
             <View style={appStyles.upperCardSection}>
-                <Text style={[appStyles.itemTitle, {fontFamily:"WorkSans_200ExtraLight"}]}>{item.description}</Text>
+                <Image source={imagesTable[item.key]} style={{width:120, height:120}}/>
+                <Text style={appStyles.itemTitle}>{item.description}</Text>
                 <Text style={appStyles.itemPrice}>${item.price}</Text>
             </View>
 
