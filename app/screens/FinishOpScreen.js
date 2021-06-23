@@ -2,6 +2,7 @@ import React, {useEffect, useContext, useState} from 'react';
 import {View, Text, Pressable, StyleSheet, Button} from "react-native";
 
 import FinishModal from '../components/FinishModal';
+import BriefLoading from '../components/BriefLoading';
 import DetailsModal from '../components/DetailsModal';
 
 import AuthContext from '../utils/AuthContext';
@@ -48,7 +49,7 @@ function FinishOpScreen({navigation}) {
     }
     
     if(!recuperado){
-      return <Text> Espere por favor...</Text>
+      return <BriefLoading/>
     }else{
       /* console.log(recuperado); */
       const total = recuperado.shopState.reduce((subt, art)=>{

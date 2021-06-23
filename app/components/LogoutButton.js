@@ -9,10 +9,11 @@ me da acceso a navigation para componentes que no son screen */
 
 function LogoutButton({navigation}) {
 
-    const {setAuth} = useContext(AuthContext);
+    const {setAuth, setUserSession} = useContext(AuthContext);
 
     function handleLogout(){
         setAuth(false);
+        setUserSession("");
         navigation.navigate("AuthLoading")
     }
     return(

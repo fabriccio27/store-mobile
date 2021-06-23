@@ -4,14 +4,17 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import loading from '../utils/loading';
 import Item from '../components/Item';
+import BriefLoading from '../components/BriefLoading';
 
 import AuthContext from '../utils/AuthContext';
 import SessionContext from "../utils/SessionContext";
 
+/* 
 import users from '../registeredUsers';
 import ItemsContext from "../utils/ItemsContext";
 import items from "../availableItems";
-import AppLoading from 'expo-app-loading';
+ esto lo usaba cuando estaba todo hardcodeado*/
+
 
 
 
@@ -73,7 +76,7 @@ const ItemsScreen = loading(({navigation}) => {
     
     
     if (!recuperado){
-      return <Text>Recuperando tu informacion...</Text>
+      return <BriefLoading/>
     }else{
       return(
         <SessionContext.Provider value={{recuperado, setRecuperado}}>

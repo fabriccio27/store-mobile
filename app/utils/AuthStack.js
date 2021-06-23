@@ -9,7 +9,7 @@ import NoAuth from "../screens/NoAuthScreen";
 import ShareButton from "../components/ShareButton";
 
 import TestScreen from "../screens/TestScreen"
-import MockCompleted from "../screens/MockCompleted";
+/* import MockCompleted from "../screens/MockCompleted"; esto era para testeo rapido, que sea lo primero que cargue*/ 
 
 const AuthStack = createStackNavigator({
     Welcome:{
