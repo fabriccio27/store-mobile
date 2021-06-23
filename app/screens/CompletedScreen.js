@@ -19,12 +19,11 @@ const CompletedScreen=()=>{
 }
 const styles = StyleSheet.create({
     container:{
-        backgroundColor:"red",
         flex:1,
         justifyContent:"center",
-        alignItems:"center",
+        backgroundColor:"rgba(111, 72, 49,0.8)",
         marginTop:50,
-        
+        paddingTop:50
     },
     titleOrHeader:{
         fontFamily:"monospace",
@@ -42,7 +41,7 @@ const styles = StyleSheet.create({
 })
 
 CompletedScreen.navigationOptions = {
-    headerTitle:()=><Text style={{alignSelf:"center"}}>Reemplazante</Text>,
+    headerTitle:()=><Text>Compra exitosa</Text>,
     headerLeft:()=><LogoutButton/>
 };
 
