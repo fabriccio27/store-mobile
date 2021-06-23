@@ -9,13 +9,14 @@ export default function App() {
   const [isAuth, setAuth] = useState(false);
   //esto es el hash que genere en el registro
   const [userSession, setUserSession] = useState("");
+  const [userShopping, setUserShopping] = useState(availableItems);
   /* const [articulos,setArticulos] = useState(availableItems); ya no esta hardcodeado, comentado afuera */
 
   //esta funcion es para usarlo en cualquier lugar a ver si esta andando bien el provider de contexto
   const testContext = () => console.log("I'm working!");
   //no es lo mejor cargar todo de entrada o si?, ver si se puede mejorar despues
   return (
-    <AuthContext.Provider value={{testContext,isAuth,setAuth,/* articulos,setArticulos, */ userSession, setUserSession}}>
+    <AuthContext.Provider value={{testContext,isAuth,setAuth, userShopping, setUserShopping, userSession, setUserSession}}>
       <AppRouter/>
     </AuthContext.Provider>
   );

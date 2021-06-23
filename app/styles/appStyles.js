@@ -13,7 +13,7 @@ export default StyleSheet.create({
         alignSelf:"center",
         backgroundColor: "rgba(77, 65, 60,0.7)" ,
         borderRadius:5,
-        margin:10,
+        margin:5,
         padding:5,
         width:"90%",
     },

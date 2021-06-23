@@ -1,13 +1,28 @@
 import React from 'react';
-import {View, Text} from "react-native";
+import {View, Text, FlatList,ImageBackground} from "react-native";
+import ItemCategory from "../components/ItemCategory";
 
-function CategoryScreen(props) {
+import availableItems from "../availableItems";
+import hashImages from "../utils/imagesHashtable";
+
+function CategoryScreen({navigation}) {
+
+    const itemsCategoria = availableItems.filter((obj)=>{
+        return obj.categoria==navigation.getParam("which");
+        //recupera bien los items el array de objetos segun categoria
+    })
+    
     return (
-        <View>
-            <Text>
-                Vista de una sola categoria, con algun parametro tengo que rellenar para que me
-                cambie la categoria
-            </Text>
+        <View style={{flex:1}}>
+
+            <ImageBackground source={hashImages[navigation.getParam("which")]} style={{flex:1, justifyContent:"center"}}>
+            <FlatList
+                data={itemsCategoria} 
+                renderItem={({item})=>{
+                  return <ItemCategory item={item} />
+                }} 
+            />
+            </ImageBackground>
         </View>
     );
 }

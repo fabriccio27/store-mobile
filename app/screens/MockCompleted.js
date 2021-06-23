@@ -1,11 +1,16 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {StyleSheet, View, Text, ImageBackground, TouchableOpacity} from "react-native";
 import LogoutButton from '../components/LogoutButton';
+import AuthContext from '../utils/AuthContext';
+import availableItems from "../availableItems";
 
 function MockCompleted({navigation}) {
-
+    const {setUserShopping} = useContext(AuthContext)
+    
     const handlePress = ()=>{
-        navigation.navigate("Items");
+        navigation.navigate("Categories");
+        setUserShopping(availableItems);
+        //aca podria limpiar el state
     };
 
     return (

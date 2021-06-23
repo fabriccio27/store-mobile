@@ -11,6 +11,9 @@ import hashFunction from "../utils/hashFunction";
 function RegisterScreen({navigation}) {
     // state
     const [username, setUsername] = useState("");
+    const [city,setCity] = useState("");
+    const [postal,setPostal] = useState("");
+
     const [password, setPassword] = useState("");
     const [repeatpassword, setRepeatPassword] = useState("");
     const [email, setEmail] = useState("");
@@ -26,7 +29,7 @@ function RegisterScreen({navigation}) {
 
     useEffect(()=>{
     
-        if (psMatch && validEmail && username!==""){
+        if (psMatch && validEmail && username!=="" && city!=="" && postal!==""){
             setButtonDisabled(false); // o sea que lo habilito
         }else{
             setButtonDisabled(true);
@@ -62,6 +65,8 @@ function RegisterScreen({navigation}) {
             username,
             email,
             password,
+            city,
+            postal,
             shopState:[
                 {key:"1", id: 1, value: 0, description:"Auriculares", price:120 },
                 {key:"2", id: 2, value: 0, description:"Almohada Viscoelastica", price:250 },
@@ -90,6 +95,8 @@ function RegisterScreen({navigation}) {
 
             <Input label="Registra tu nombre de usuario:" onChangeText={(user) => setUsername(user)}/>
             <Input label="Email:" onChangeText={(em) => setEmail(em)} />
+            <Input label="Ciudad:" onChangeText={(em) => setCity(em)} />
+            <Input label="Codigo Postal:" onChangeText={(em) => setPostal(em)} />
             <Input label="Password" secureTextEntry onChangeText={(ps) => setPassword(ps)} onEndEditing={checkPassword} />
             <Input label="Confirmar Password" secureTextEntry onChangeText={(rps)=>setRepeatPassword(rps)}  onEndEditing={checkPassword} />
             

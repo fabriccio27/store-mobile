@@ -29,10 +29,9 @@ const AuthStack = createStackNavigator({
         })
     },
     Share,
-    CategoriesScreen,
     /* MockCompleted, */
     NoAuth
 },
-{initialRouteName:"CategoriesScreen"})
+{initialRouteName:"Welcome"})
 
 export default AuthStack;

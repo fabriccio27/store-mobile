@@ -1,8 +1,8 @@
 const images = {
-    "1":require("../assets/auriculares.jpg"),
-    "2":require("../assets/almohada.jpg"),
-    "3":require("../assets/xiaomiReader.jpg"),
-    "4":require("../assets/afeitadora.jpg"),
+    "Perfumes":require("../assets/perfumes.jpg"),
+    "Comida":require("../assets/comidaBack.png"),
+    "Libros":require("../assets/librosBack.jpg"),
+    
 }
 
 export default images;

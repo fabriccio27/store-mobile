@@ -33,7 +33,7 @@ const LoginScreen = ({navigation})=> {
                 setAuth(true);
                 setUserSession(generatedHash);
                 //aca ya podria setear info a state, y no fetcheo en ItemsScreen, ver despues...
-                navigation.navigate("Items");
+                navigation.navigate("Categories");
             })
             .catch(err=>console.log("Error en loginalt: ", err));
         } else {
