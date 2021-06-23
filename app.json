@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "teoria-mobile",
-    "slug": "teoria-mobile",
+    "name": "storeFabricio",
+    "slug": "storeFabricio",
     "version": "1.0.0",
     "orientation": "default",
     "icon": "./assets/icon.png",
@@ -20,6 +20,7 @@
       "supportsTablet": true
     },
     "android": {
+      "package":"fabricioSaavedra.store",
       "softwareKeyboardLayoutMode": "pan",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",

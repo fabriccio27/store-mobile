@@ -2,10 +2,11 @@
 
 ## Recomendacion de testeo
 
-* Clonar repositorio de [aca](https://github.com/fabriccio27/store-mobile) **de rama auth-context**. 
+* Clonar repositorio de [aca](https://github.com/fabriccio27/store-mobile) **de rama prueba**. 
 ```
-git clone -b auth-context https://github.com/fabriccio27/store-mobile.git
+git clone -b prueba https://github.com/fabriccio27/store-mobile.git store
 ```
+* Ir con consola/terminal a store.
 * Instalar dependencias con `npm install`. Va a usar las especificadas en `package.json`, que a mi me anduvieron y son practicamente las usadas en clase.
 
 ## Caracteristicas

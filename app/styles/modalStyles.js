@@ -43,5 +43,12 @@ export default StyleSheet.create({
       modalText: {
         marginBottom: 15,
         textAlign: "center"
+      },
+      mainInfo:{
+        textAlign:"center",
+        fontSize:20,
+        fontWeight:"bold",
+        color:"white",
+        alignSelf:"center"
       }
 })

@@ -48,8 +48,6 @@ function FinishOpScreen({navigation}) {
       setFinishModalVisible(!finishModalVisible);
     }
     
-    
-      /* console.log(recuperado); */
       const total = userShopping.reduce((subt, art)=>{
         return subt + art.value * art.price;
       },0);
@@ -63,7 +61,7 @@ function FinishOpScreen({navigation}) {
             showFinishModal={showFinishModal}
             navigation={navigation}
           />
-          {/* <DetailsModal detailModalVisible={detailModalVisible} setDetailModalVisible={setDetailModalVisible} total={total}/> */}
+         
           <Text style={modalStyles.mainInfo}>{total==0?"Aun no tenes nada en tu carrito":`Tu compra suma $${total}`}</Text>
           {total!=0 && (<Pressable
                 style={[modalStyles.button, modalStyles.buttonOpen]}
