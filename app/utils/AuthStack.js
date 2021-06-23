@@ -28,9 +28,9 @@ const AuthStack = createStackNavigator({
         })
     },
     Share,
-    MockCompleted,
+    /* MockCompleted, */
     NoAuth
 },
-{initialRouteName:"MockCompleted"})
+{initialRouteName:"Welcome"})
 
 export default AuthStack;

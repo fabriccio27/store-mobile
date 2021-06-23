@@ -4,7 +4,7 @@ import { createStackNavigator } from "react-navigation-stack";
 
 import Items from "../screens/ItemsScreen";
 import Finish from "../screens/FinishOpScreen";
-import Completed from "../screens/CompletedScreen";
+import Completed from "../screens/MockCompleted";
 import ShopButton from "../components/ShopButton";
 import LogoutButton from "../components/LogoutButton";
 

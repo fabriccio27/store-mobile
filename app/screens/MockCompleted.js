@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, View, Text, ImageBackground} from "react-native";
-
+import LogoutButton from '../components/LogoutButton';
 
 function MockCompleted(props) {
     return (
@@ -42,4 +42,8 @@ let styles = StyleSheet.create({
     }
 });
 
+MockCompleted.navigationOptions={
+    headerTitle:()=><Text>Compra exitosa</Text>,
+    headerLeft:()=><LogoutButton/>
+}
 export default MockCompleted;
