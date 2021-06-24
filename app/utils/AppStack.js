@@ -1,8 +1,6 @@
 import React from "react";
-import { Text } from "react-native";
 import { createStackNavigator } from "react-navigation-stack";
 
-import Items from "../screens/ItemsScreen";
 import Finish from "../screens/NewFinishOpScreen";
 import Completed from "../screens/MockCompleted";
 import Categories from "../screens/CategoriesScreen";
@@ -10,7 +8,7 @@ import Category from "../screens/CategoryScreen";
 
 import ShopButton from "../components/NewShopButton";
 import LogoutButton from "../components/LogoutButton";
-
+import CategoryTitle from "../components/CategoryTitle";
 
 const AppStack = createStackNavigator({
     Categories:{
@@ -29,23 +27,13 @@ const AppStack = createStackNavigator({
     Category:{
       screen:Category,
       navigationOptions:({navigation})=>({
-        title:navigation.getParam("which"),
+        //para title no puedo pasar una funcion, paso directamente el componente
+        title:<CategoryTitle title={navigation.getParam("which")} />,
         headerRight:()=><ShopButton />
       })
     },
     Completed,
     
-},{initialRouteName:"Categories"})
+}, {initialRouteName:"Categories"})
 
 export default AppStack;
-
-/*  Items:{
-        screen: props=>(
-          <Items promise={new Promise(resolve=>setTimeout(resolve, 1500))} {...props}/>
-        ),
-        navigationOptions:({navigation})=>({
-          title:navigation.getParam("title") || "Carrito",
-          headerLeft:()=><LogoutButton/>,
-          headerRight:()=><ShopButton/>
-        })
-    }, */

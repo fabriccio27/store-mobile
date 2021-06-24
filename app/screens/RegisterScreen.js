@@ -1,12 +1,14 @@
 import React, {useState, useEffect} from 'react';
-import  {View, Text, ScrollView, TouchableOpacity, StyleSheet} from 'react-native';
+import  {View, Text, ScrollView, TouchableOpacity} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Input from "../components/Input";
 import appStyles from "../styles/appStyles";
 import ImageBackground from 'react-native/Libraries/Image/ImageBackground';
+import availableItems from "../availableItems";
 
 import hashFunction from "../utils/hashFunction";
+import getInfo from '../utils/getInfo';
 
 function RegisterScreen({navigation}) {
     // state
@@ -36,11 +38,10 @@ function RegisterScreen({navigation}) {
         
     },[psMatch,validEmail,username]);
     
-    //esto lo ejecuto cuando termino de completar?
+
     const checkPassword = () =>{
         
         if (password === repeatpassword && password.trim()!==""){
-            /* console.log(`${password} and ${repeatpassword}`); */
             setPsMatch(true);
         }else{
             setPsMatch(false);
@@ -67,31 +68,29 @@ function RegisterScreen({navigation}) {
             password,
             city,
             postal,
-            shopState:[
-                
-            ]
+            shopState:availableItems
         };
         const userHash = hashFunction(username.trim()+password.trim()).toString();
         
-        // checkear que el hash no esté registrado ya
-
-        AsyncStorage.setItem(userHash, JSON.stringify(userInfo))
-        .then(()=>console.log("Registrado!"))
-        .then(()=>navigation.navigate("Login"))
-        .catch(err=>console.log("Paso esto tratando de escribir registro: ", err));
-
-        /* 
-        escribir a async-storage con key igual hash de username y password
-        value seria userInfo en json
-        */
-        console.log(JSON.stringify(userInfo));
-        
-    }
+        // checkear que el hash no esté registrado ya. Anda bien.
+        getInfo(userHash).then((resp)=>{
+            //si no habia nada en esa locacion proseguir, si no decir que ya hay alguien con ese user y pass
+            if (!resp){
+                AsyncStorage.setItem(userHash, JSON.stringify(userInfo))
+                .then(()=>console.log("Registrado!"))
+                .then(()=>navigation.navigate("Login"))
+                .catch(err=>console.log("Paso esto tratando de escribir a registro: ", err));
+            } else {
+                return navigation.navigate("Taken");
+            }
+        })
+        console.log(JSON.stringify(userInfo));   //esto lo muestra haya sido exitoso o no
+    };
 
     return (
-        <View style={{flex:1,height:"100%", backgroundColor:"dodgerblue"}}>
+        <View style={{flex:1,height:"100%"}}>
             <ImageBackground source={require("../assets/fillOutForm.jpeg")} style={appStyles.imageRegister}>
-            <ScrollView contentContainerStyle={appStyles.contentContainer}>  
+                <ScrollView contentContainerStyle={appStyles.contentContainer}>  
 
                     <Input label="Registra tu nombre de usuario:" onChangeText={(user) => setUsername(user)}/>
                     <Input label="Email:" onChangeText={(em) => setEmail(em)} />
@@ -111,7 +110,7 @@ function RegisterScreen({navigation}) {
                     </TouchableOpacity>
                 
             
-            </ScrollView>
+                </ScrollView>
             </ImageBackground>
         </View>
     );

@@ -6,11 +6,13 @@ import Login from "../screens/LoginScreen";
 import Register from "../screens/RegisterScreen";
 import Share from "../screens/ShareScreen";
 import NoAuth from "../screens/NoAuthScreen";
+import Taken from "../screens/TakenScreen";
+
 import ShareButton from "../components/ShareButton";
 
-import TestScreen from "../screens/TestScreen"
+import TestScreen from "../screens/TestScreen";
 /* import MockCompleted from "../screens/MockCompleted"; esto era para testeo rapido, que sea lo primero que cargue*/ 
-import CategoriesScreen from "../screens/CategoriesScreen";
+
 
 const AuthStack = createStackNavigator({
     Welcome:{
@@ -29,7 +31,12 @@ const AuthStack = createStackNavigator({
         })
     },
     Share,
-    /* MockCompleted, */
+    Taken:{
+      screen:Taken,
+      navigationOptions:()=>({
+        title:"Nombre de usuario ya registrado."
+      })
+    },
     NoAuth
 },
 {initialRouteName:"Welcome"})

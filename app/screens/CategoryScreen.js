@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, FlatList,ImageBackground} from "react-native";
+import {View, FlatList, ImageBackground} from "react-native";
 import ItemCategory from "../components/ItemCategory";
 
 import availableItems from "../availableItems";
@@ -14,7 +14,6 @@ function CategoryScreen({navigation}) {
     
     return (
         <View style={{flex:1}}>
-
             <ImageBackground source={hashImages[navigation.getParam("which")]} style={{flex:1, justifyContent:"center"}}>
             <FlatList
                 data={itemsCategoria} 

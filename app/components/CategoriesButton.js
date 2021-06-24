@@ -3,9 +3,13 @@ import {TouchableOpacity, Text} from "react-native";
 import appStyles from '../styles/appStyles';
 import { withNavigation } from 'react-navigation';
 
-function CategoriesButton({navigation, innerText, destination}) {
+function CategoriesButton({navigation, innerText}) {
+    
     const handlePress = () =>{
-        navigation.navigate(destination,{which:innerText});
+        /* el segundo parametro de navigate es objeto de parametros, 
+        con esto voy a saber que categoria recuperar en screen Category
+        usando navigation.getParam("which") */
+        navigation.navigate("Category", {which:innerText});
     };
 
     return (

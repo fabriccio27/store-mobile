@@ -1,5 +1,5 @@
 import React, {useEffect, useContext, useState} from 'react';
-import {View, Text, FlatList, Alert, BackHandler} from "react-native";
+import {View, FlatList, Alert, BackHandler} from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import loading from '../utils/loading';
@@ -9,14 +9,9 @@ import BriefLoading from '../components/BriefLoading';
 import AuthContext from '../utils/AuthContext';
 import SessionContext from "../utils/SessionContext";
 
-/* 
-import users from '../registeredUsers';
-import ItemsContext from "../utils/ItemsContext";
-import items from "../availableItems";
- esto lo usaba cuando estaba todo hardcodeado*/
-
-
-
+/* MEJORARIA EL DISEÑO, no hacer llamada para buscar info de items, 
+los items se tienen que haber seteado en la accion de autenticacion
+no en otro screen como este. */
 
 //este va wrappeado porque supuestamente fui a buscar info de items
 //COMO HAGO PARA QUE TODOS PARTAN DEL MISMO PERO DESPUES CADA UNO TENGA EL SUYO
@@ -46,7 +41,7 @@ const ItemsScreen = loading(({navigation}) => {
         );
     
         return () => backHandler.remove();
-      }, []);
+    }, []);
     
       
     useEffect(()=>{

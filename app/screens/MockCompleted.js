@@ -63,7 +63,7 @@ let styles = StyleSheet.create({
 });
 
 MockCompleted.navigationOptions={
-    headerTitle:()=><Text>Compra exitosa</Text>,
+    headerTitle:()=><Text style={{color:"#2f2cb0", fontSize:20, fontWeight:"bold", textAlign:"center"}}>Compra exitosa</Text>,
     headerLeft:()=><LogoutButton/>
 }
 export default MockCompleted;
