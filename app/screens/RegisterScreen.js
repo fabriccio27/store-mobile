@@ -90,9 +90,8 @@ function RegisterScreen({navigation}) {
 
     return (
         <View style={{flex:1,height:"100%", backgroundColor:"dodgerblue"}}>
-            <ImageBackground source={require("../assets/fillOutForm.jpeg")} style={styles.image}>
-            <ScrollView contentContainerStyle={styles.contentContainer}>
-                
+            <ImageBackground source={require("../assets/fillOutForm.jpeg")} style={appStyles.imageRegister}>
+            <ScrollView contentContainerStyle={appStyles.contentContainer}>  
 
                     <Input label="Registra tu nombre de usuario:" onChangeText={(user) => setUsername(user)}/>
                     <Input label="Email:" onChangeText={(em) => setEmail(em)} />
@@ -102,17 +101,14 @@ function RegisterScreen({navigation}) {
                     <Input label="Confirmar Password" secureTextEntry onChangeText={(rps)=>setRepeatPassword(rps)}  onEndEditing={checkPassword} />
 
                     {psMatch?<PassMatch/>:<NoPassMatch/>}
-                    {/* aca por ahi tendria que pasar un objeto que diga que estoy autenticado, y que use eso para 
-                    modelar que hace apretar back */}
-                    {/* aca tengo que ver si exporto un json  */}
+                  
                     <TouchableOpacity disabled={buttonDisabled} onPress={submitRegister}>
                         <Text 
-                            style={buttonDisabled?(styles.confirmRegisterButton):[styles.confirmRegisterButton,{backgroundColor:"#241c1b"}]}
+                            style={buttonDisabled?(appStyles.confirmRegisterButton):[appStyles.confirmRegisterButton,{backgroundColor:"#241c1b"}]}
                         >
                             Confirmar
                         </Text>
                     </TouchableOpacity>
-                    {/* <Button title="Confirmar" disabled={buttonDisabled}  color="#241c1b" /> */}
                 
             
             </ScrollView>
@@ -120,23 +116,5 @@ function RegisterScreen({navigation}) {
         </View>
     );
 }
-const styles = StyleSheet.create({
-    contentContainer: {
-        paddingVertical:20,
-        justifyContent:"center",
-        alignContent:"center"
-    },
-    image:{
-        flex:1
-    },
-    confirmRegisterButton:{
-        alignSelf:"center",
-        padding:10,
-        width:"50%", 
-        color:"white", 
-        backgroundColor:"grey",
-        textAlign:"center"
-    }
-  });
 
 export default RegisterScreen;

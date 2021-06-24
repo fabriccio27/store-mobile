@@ -7,11 +7,21 @@ export default StyleSheet.create({
         alignItems: "center",
         backgroundColor:"#8c9ba0"
     },
-    scrollviewContainer:{
+    contentContainer: {
+        paddingVertical:20,
+        justifyContent:"center",
+        alignContent:"center"
+    },
+    imageRegister:{
         flex:1
     },
-    imageWithinScrollView:{
-        color:"red"
+    confirmRegisterButton:{
+        alignSelf:"center",
+        padding:10,
+        width:"50%", 
+        color:"white", 
+        backgroundColor:"grey",
+        textAlign:"center"
     },
     textInputContainer:{
         
@@ -68,7 +78,10 @@ export default StyleSheet.create({
     },
     pendingMessage:{
         color:"white",
+        alignSelf:"center",
         backgroundColor:"crimson",
+        textAlign:"center",
+        width:"70%",
         marginBottom:5,
         padding:5
     },
