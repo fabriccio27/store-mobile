@@ -5,8 +5,13 @@ export default StyleSheet.create({
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor:"#8c9ba0",
-        /* backgroundColor:"#333131" */
+        backgroundColor:"#8c9ba0"
+    },
+    scrollviewContainer:{
+        flex:1
+    },
+    imageWithinScrollView:{
+        color:"red"
     },
     textInputContainer:{
         

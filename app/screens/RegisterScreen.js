@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import  {View, Text, Button, ScrollView} from 'react-native';
+import  {View, Text, ScrollView, TouchableOpacity, StyleSheet} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Input from "../components/Input";
@@ -23,7 +23,6 @@ function RegisterScreen({navigation}) {
     
     //hooks de efectos
     useEffect(()=>{
-        /* console.log("is valid email?", validEmail); */
         checkEmail();
     },[email]);
 
@@ -53,6 +52,7 @@ function RegisterScreen({navigation}) {
         setValidEmail(isEmail);
     };
     
+    // JSX que se va a renderizar segun condicional
     const PassMatch = () => {
         return <Text style={appStyles.greenMessage}>Password coinciden!</Text>
     };
@@ -68,14 +68,13 @@ function RegisterScreen({navigation}) {
             city,
             postal,
             shopState:[
-                {key:"1", id: 1, value: 0, description:"Auriculares", price:120 },
-                {key:"2", id: 2, value: 0, description:"Almohada Viscoelastica", price:250 },
-                {key:"3", id: 3, value: 0, description:"Lector e-books", price:380 },
-                {key:"4", id: 4, value: 0, description:"Afeitadora", price:170 }
+                
             ]
         };
         const userHash = hashFunction(username.trim()+password.trim()).toString();
         
+        // checkear que el hash no esté registrado ya
+
         AsyncStorage.setItem(userHash, JSON.stringify(userInfo))
         .then(()=>console.log("Registrado!"))
         .then(()=>navigation.navigate("Login"))
@@ -90,26 +89,54 @@ function RegisterScreen({navigation}) {
     }
 
     return (
-        <View style={appStyles.container}>
-            <ImageBackground source={require("../assets/fillOutForm.jpeg")} style={appStyles.backgroundImage}>
+        <View style={{flex:1,height:"100%", backgroundColor:"dodgerblue"}}>
+            <ImageBackground source={require("../assets/fillOutForm.jpeg")} style={styles.image}>
+            <ScrollView contentContainerStyle={styles.contentContainer}>
+                
 
-            <Input label="Registra tu nombre de usuario:" onChangeText={(user) => setUsername(user)}/>
-            <Input label="Email:" onChangeText={(em) => setEmail(em)} />
-            <Input label="Ciudad:" onChangeText={(em) => setCity(em)} />
-            <Input label="Codigo Postal:" onChangeText={(em) => setPostal(em)} />
-            <Input label="Password" secureTextEntry onChangeText={(ps) => setPassword(ps)} onEndEditing={checkPassword} />
-            <Input label="Confirmar Password" secureTextEntry onChangeText={(rps)=>setRepeatPassword(rps)}  onEndEditing={checkPassword} />
+                    <Input label="Registra tu nombre de usuario:" onChangeText={(user) => setUsername(user)}/>
+                    <Input label="Email:" onChangeText={(em) => setEmail(em)} />
+                    <Input label="Ciudad:" onChangeText={(em) => setCity(em)} />
+                    <Input label="Codigo Postal:" onChangeText={(em) => setPostal(em)} />
+                    <Input label="Password" secureTextEntry onChangeText={(ps) => setPassword(ps)} onEndEditing={checkPassword} />
+                    <Input label="Confirmar Password" secureTextEntry onChangeText={(rps)=>setRepeatPassword(rps)}  onEndEditing={checkPassword} />
+
+                    {psMatch?<PassMatch/>:<NoPassMatch/>}
+                    {/* aca por ahi tendria que pasar un objeto que diga que estoy autenticado, y que use eso para 
+                    modelar que hace apretar back */}
+                    {/* aca tengo que ver si exporto un json  */}
+                    <TouchableOpacity disabled={buttonDisabled} onPress={submitRegister}>
+                        <Text 
+                            style={buttonDisabled?(styles.confirmRegisterButton):[styles.confirmRegisterButton,{backgroundColor:"#241c1b"}]}
+                        >
+                            Confirmar
+                        </Text>
+                    </TouchableOpacity>
+                    {/* <Button title="Confirmar" disabled={buttonDisabled}  color="#241c1b" /> */}
+                
             
-            {psMatch?<PassMatch/>:<NoPassMatch/>}
-            {/* aca por ahi tendria que pasar un objeto que diga que estoy autenticado, y que use eso para 
-            modelar que hace apretar back */}
-            {/* aca tengo que ver si exporto un json  */}
-            {/* <Button title="Printear info" onPress={submitRegister}/> */}
-            <Button title="Confirmar" disabled={buttonDisabled} onPress={submitRegister} color="#241c1b" />
+            </ScrollView>
             </ImageBackground>
-            
         </View>
     );
 }
+const styles = StyleSheet.create({
+    contentContainer: {
+        paddingVertical:20,
+        justifyContent:"center",
+        alignContent:"center"
+    },
+    image:{
+        flex:1
+    },
+    confirmRegisterButton:{
+        alignSelf:"center",
+        padding:10,
+        width:"50%", 
+        color:"white", 
+        backgroundColor:"grey",
+        textAlign:"center"
+    }
+  });
 
 export default RegisterScreen;
